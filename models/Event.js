@@ -10,6 +10,10 @@ module.exports = function (sequelize) {
     }
   });
 
-  return Event;
-
+  Event
+    .sync()
+    .then(() => {
+      return Event;
+    });
+    
 }

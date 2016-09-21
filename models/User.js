@@ -13,6 +13,10 @@ module.exports = function (sequelize) {
     }
   });
 
-  return User;
+  User
+    .sync()
+    .then(() => {
+      return User;
+    });
 
 }
