@@ -8,5 +8,4 @@ const setup       = require('./config/setup')(app);
 const api         = require('./api/api')(app, models);
 const routes      = require('./routes/routes')(app);
 
-// Start server
 app.listen(3000, () => console.log('Example app listening on port 3000!'));

@@ -15,6 +15,6 @@ module.exports = function (sequelize) {
 
   User.sync();
 
-  return User;   
+  return User;
 
-}
+};
