@@ -58,24 +58,68 @@ module.exports = function (app, sequelize, models) {
 
     // === E V E N T S === //
 
+    // Create a new event
+    app.post('/events', (req, res) => {
+        const date          = req.body.date;
+        const location      = req.body.location;
+        const description   = req.body.description;
+
+        // Malformed event
+        if (!date || !location || !description) {
+            res.send({
+                'error': 'A new event must have a date, a location and a description.'
+            });
+        }
+
+        models.Event.create({ date, location, description })
+            .then(event => {
+                res.send({ 'success': true, event });
+            })
+            .catch(err => res.send({ err }));
+    });
+
     // Get all events
     app.get('/events', (req, res) => {
-
+        models.Event.findAll()
+            .then(events => {
+                res.send({ events });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Get an event
     app.get('/events/:id', (req, res) => {
+        const id = req.params.id;
 
-    });
-
-    // Create a new event
-    app.post('/events', (req, res) => {
-
+        model.Event.findOne({
+            where: { id }
+        })
+            .then(event => {
+                res.send({ 'success': true, event });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Update an event
     app.post('/events/:id', (req, res) => {
+        const id            = req.params.id;
+        const date          = req.body.date;
+        const description   = req.body.description;
+        const location      = req.body.location;
 
+        if (!date || !description || !location) {
+            res.send({
+                'error': 'When updating an event, date, description and location are required.'
+            });
+        }
+
+        model.Event.update({ date, description, location }, {
+            where: { id }
+        })
+            .then(event => {
+                res.send({ 'success': true, event });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Delete an event
@@ -87,22 +131,64 @@ module.exports = function (app, sequelize, models) {
 
     // Create a hobby people can select
     app.post('/hobbies', (req, res) => {
+        const name          = req.body.date;
+        const category      = req.body.location;
 
+        // Malformed event
+        if (!name || !category) {
+            res.send({
+                'error': 'A new hobby must have a name and a category.'
+            });
+        }
+
+        models.Hobby.create({ name, category })
+            .then(hobby => {
+                res.send({ 'success': true, hobby });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Get all hobbies
     app.get('/hobbies', (req, res) => {
-
+        models.Hobby.findAll()
+            .then(hobbies => {
+                res.send({ hobbies });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Get a specific hobby
     app.get('/hobbies/:id', (req, res) => {
+        const id = req.params.id;
 
+        model.Hobby.findOne({
+            where: { id }
+        })
+            .then(hobby => {
+                res.send({ 'success': true, hobby });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Update a hobby
     app.get('/hobbies/:id', (req, res) => {
+        const id        = req.params.id;
+        const name      = req.body.name;
+        const category  = req.body.category;
 
+        if (!name || !category) {
+            res.send({
+                'error': 'When updating a hobby, name and category are required.'
+            });
+        }
+
+        model.Hobby.update({ name, category }, {
+            where: { id }
+        })
+            .then(hobby => {
+                res.send({ 'success': true, hobby });
+            })
+            .catch(err => res.send({ err }));
     });
 
     // Delete a specific hobby
