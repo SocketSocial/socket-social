@@ -1,45 +1,43 @@
 'use strict';
 
-const bodyParser = require('body-parser');
 const md5 = require('md5');
-
 
 module.exports = function (app, sequelize, models) {
 
-    app.get('/signin', (req, res) => {
-       const email = req.body.email;
+    // Sign in to the application
+    app.post('/signin', (req, res) => {
+       const email    = req.body.email;
        const password = md5(req.body.password);
 
-        models.User.findOne({
-            where: {
-                email
-            }
+       models.User.findOne({
+            where: { email }
         })
-            .then(result => {
-                console.log(result);
-            });
+            .then(user => {
 
-    });
-
-    app.get('/users/create', (req, res) => {
-
-        const email = req.body.email;
-        const password = md5(req.body.password);
-
-        models.User.create({
-            email,
-            password
-        })
-            .then(() => {
-                res.send({
-                    'success': true
-                });
+                if (user.dataValues.password === password) {
+                    // Valid password
+                    res.send({ 'success': true, user });
+                } else {
+                    // Invalid password
+                    res.send({ 'success': false });
+                }
             })
             .catch(err => {
-                res.send({
-                    'success': false,
-                    'error': err
-                });
+                res.send({ err });
+            });
+    });
+
+    // Create a new user
+    app.post('/signup', (req, res) => {
+        const email     = req.body.email;
+        const password  = md5(req.body.password);
+
+        models.User.create({ email, password })
+            .then(user => {
+                res.send({ 'success': true, user });
+            })
+            .catch(err => {
+                res.send({ err });
             });
     });
 

@@ -13,10 +13,8 @@ module.exports = function (sequelize) {
     }
   });
 
-  User
-    .sync()
-    .then(() => {
-      return User;
-    });
+  User.sync();
+
+  return User;   
 
 }

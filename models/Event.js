@@ -10,10 +10,8 @@ module.exports = function (sequelize) {
     }
   });
 
-  Event
-    .sync()
-    .then(() => {
-      return Event;
-    });
-    
+  Event.sync();
+
+  return Event;   
+
 }

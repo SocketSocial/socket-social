@@ -1,6 +1,7 @@
 // Dependencies
-const express = require('express');
-const path    = require('path');
+const express    = require('express');
+const path       = require('path');
+const bodyParser = require('body-parser');
 
 // Database
 const sequelize = require('./config/db');
@@ -13,6 +14,7 @@ var app = express();
 
 // Set static folder
 app.use(express.static('public'));
+app.use(bodyParser());
 
 // API
 const api = require('./api/api')(app, sequelize, models);
