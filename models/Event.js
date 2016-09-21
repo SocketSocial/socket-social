@@ -19,7 +19,6 @@ module.exports = function (sequelize) {
 
   });
 
-<<<<<<< HEAD
   // Need to add association for participant
 
 
@@ -28,10 +27,3 @@ module.exports = function (sequelize) {
 
     
 };
-=======
-  Event.sync();
-
-  return Event;   
-
-}
->>>>>>> 23e234ced5cd267e0777edac6cb302ee8a5021f2
