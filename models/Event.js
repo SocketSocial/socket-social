@@ -25,5 +25,3 @@ module.exports = function (sequelize) {
   Event.sync();
   return Event;
 
-    
-};
