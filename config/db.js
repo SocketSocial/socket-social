@@ -7,4 +7,8 @@ const connection = mysql.createConnection({
   database : 'socketsocial'
 });
 
-module.exports = connection;
+module.exports = {
+  test: () => {
+    console.log('Working.', connection);
+  }
+};

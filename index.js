@@ -12,7 +12,7 @@ var app = express();
 app.use(express.static('public'));
 
 // API
-const api = require('./api/api')(app);
+const api = require('./api/api')(app, db);
 
 // Routing
 const routes = require('./routes/routes')(app);
