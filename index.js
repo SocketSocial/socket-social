@@ -1,6 +1,7 @@
 // Dependencies
 var express = require('express');
-var mysql = require('mysql');
+var path    = require('path');
+var mysql   = require('mysql');
 
 // Database
 var connection = mysql.createConnection({
@@ -28,7 +29,7 @@ app.use(express.static('public'));
 
 // Routing
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // Start server
