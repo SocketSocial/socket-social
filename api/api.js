@@ -122,7 +122,7 @@ module.exports = function (app, sequelize, models) {
             .catch(err => res.send({ err }));
     });
 
-    // Delete an event
+    // Delete an event TODO
     app.delete('/events/:id', (req, res) => {
 
     });
@@ -191,7 +191,7 @@ module.exports = function (app, sequelize, models) {
             .catch(err => res.send({ err }));
     });
 
-    // Delete a specific hobby
+    // Delete a specific hobby TODO
     app.delete('/hobbies/:id', (req, res) => {
 
     });
