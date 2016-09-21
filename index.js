@@ -4,6 +4,8 @@ const path    = require('path');
 
 // Database
 const sequelize = require('./config/db');
+
+// Models
 const models = require('./models/models')(sequelize);
 
 // Instantiate app
@@ -13,7 +15,7 @@ var app = express();
 app.use(express.static('public'));
 
 // API
-const api = require('./api/api')(app, sequelize);
+const api = require('./api/api')(app, sequelize, models);
 
 // Routing
 const routes = require('./routes/routes')(app);

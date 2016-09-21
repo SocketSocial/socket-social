@@ -1,8 +1,6 @@
 'use strict';
 
-const models = require('../models/models');
-
-module.exports = function (app, sequelize) {
+module.exports = function (app, sequelize, models) {
 
     app.get('/test', (req, res) => {
         models.User.create({
