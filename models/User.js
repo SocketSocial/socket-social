@@ -14,14 +14,8 @@ module.exports = function (sequelize) {
   });
 
   User.sync();
-<<<<<<< HEAD
   return User;
 
 
 };
-=======
 
-  return User;   
-
-}
->>>>>>> 23e234ced5cd267e0777edac6cb302ee8a5021f2
