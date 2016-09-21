@@ -8,6 +8,7 @@ var babelify   = require('babelify'),
     livereload = require('gulp-livereload'),
     merge      = require('merge'),
     rename     = require('gulp-rename'),
+    sass       = require('gulp-sass'),
     source     = require('vinyl-source-stream'),
     sourceMaps = require('gulp-sourcemaps'),
     watchify   = require('watchify');
@@ -18,6 +19,11 @@ var config = {
         outputDir: './dist/',  // Directory to save bundle to
         mapDir: './maps/',      // Subdirectory to save maps to
         outputFile: 'bundle.js' // Name to use for bundle
+    },
+    css: {
+        src: 'src/sass/style.scss',
+        outputDir: './public/css/',
+        outputFile: 'style.css'
     }
 };
 
@@ -45,6 +51,12 @@ gulp.task('bundle', function () {
     bundle(bundler);  // Chain other options -- sourcemaps, rename, etc.
 });
 
-gulp.task('default', ['bundle'], function() {
-    gulp.start('bundle');
+gulp.task('sass', function () {
+    return gulp.src('./src/sass/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(config.css.outputDir));
+});
+
+gulp.task('default', ['sass'], function() {
+    gulp.start('sass');
 });
