@@ -14,7 +14,15 @@ module.exports = function (sequelize) {
   });
 
   User.sync();
+<<<<<<< HEAD
 
   return User;   
 
 };
+=======
+  return User;
+
+
+};
+
+>>>>>>> reagan
