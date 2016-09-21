@@ -1,13 +1,25 @@
 'use strict';
-module.exports = function (app, db) {
+
+const models = require('../models/models');
+
+module.exports = function (app, sequelize) {
 
     app.get('/test', (req, res) => {
-        let data = {
-            'success': true,
-            'data': 'Hello world'
-        }
-
-        res.send(data);
+        models.User.create({
+            email: 'cbryan@dealersocket.com',
+            password: 'hack2016!'
+        })
+            .then(() => {
+                res.send({
+                    'success': true
+                });
+            })
+            .catch(err => {
+                res.send({
+                    'success': false,
+                    'error': err
+                });
+            });
     });
 
 };
