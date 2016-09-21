@@ -15,9 +15,8 @@ var babelify   = require('babelify'),
 
 var config = {
     js: {
-        src: 'index.js',       // Entry point.
-        outputDir: './dist/',  // Directory to save bundle to
-        mapDir: './maps/',      // Subdirectory to save maps to
+        src: './src/js/main.js',       // Entry point.
+        outputDir: './public/js/',  // Directory to save bundle to
         outputFile: 'bundle.js' // Name to use for bundle
     },
     css: {
@@ -54,6 +53,6 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(config.css.outputDir));
 });
 
-gulp.task('default', ['sass'], function() {
-    gulp.start('sass');
+gulp.task('default', ['sass'], function () {
+    gulp.start('sass', 'bundle');
 });
