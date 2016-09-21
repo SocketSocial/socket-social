@@ -11,6 +11,9 @@ var app = express();
 // Set static folder
 app.use(express.static('public'));
 
+// API
+const api = require('./api/api')(app);
+
 // Routing
 const routes = require('./routes/routes')(app);
 
