@@ -3,7 +3,8 @@ const express = require('express');
 const path    = require('path');
 
 // Database
-const db = require('./config/db');
+const sequelize = require('./config/db');
+const models = require('./models/models')(sequelize);
 
 // Instantiate app
 var app = express();
@@ -12,7 +13,7 @@ var app = express();
 app.use(express.static('public'));
 
 // API
-const api = require('./api/api')(app, db);
+const api = require('./api/api')(app, sequelize);
 
 // Routing
 const routes = require('./routes/routes')(app);
