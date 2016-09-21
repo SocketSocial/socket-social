@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function (sequelize) {
 
     const User = require('./User')(sequelize);
