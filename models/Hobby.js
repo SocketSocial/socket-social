@@ -10,12 +10,10 @@ module.exports = function (sequelize) {
         category: {
             type: Sequelize.STRING
         }
-
     });
 
     Hobby.sync();
+
     return Hobby;
-
-
+    
 };
-

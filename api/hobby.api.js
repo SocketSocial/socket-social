@@ -4,14 +4,16 @@ module.exports = function (app, models) {
 
         // Create a hobby people can select
         app.post('/hobbies', (req, res) => {
-            const name          = req.body.date;
-            const category      = req.body.location;
+            const name          = req.body.name;
+            const category      = req.body.category;
 
             // Malformed event
             if (!name || !category) {
                 res.send({
                     'error': 'A new hobby must have a name and a category.'
                 });
+
+                return false;
             }
 
             models.Hobby.create({ name, category })
@@ -34,7 +36,7 @@ module.exports = function (app, models) {
         app.get('/hobbies/:id', (req, res) => {
             const id = req.params.id;
 
-            model.Hobby.findOne({
+            models.Hobby.findOne({
                 where: { id }
             })
                 .then(hobby => {
@@ -44,22 +46,32 @@ module.exports = function (app, models) {
         });
 
         // Update a hobby
-        app.get('/hobbies/:id', (req, res) => {
+        app.post('/hobbies/:id', (req, res) => {
             const id        = req.params.id;
             const name      = req.body.name;
             const category  = req.body.category;
+
+            console.log('Updating a hobby with ID#' + id, name, category);
 
             if (!name || !category) {
                 res.send({
                     'error': 'When updating a hobby, name and category are required.'
                 });
+
+                return false;
             }
 
-            model.Hobby.update({ name, category }, {
+            models.Hobby.update({ name, category }, {
                 where: { id }
             })
-                .then(hobby => {
-                    res.send({ 'success': true, hobby });
+                .then(() => {
+                    models.Hobby.findOne({
+                        where: { id }
+                    })
+                        .then(hobby => {
+                            res.send({ 'success': true, hobby });
+                        })
+                        .catch(err => res.send({ err }));
                 })
                 .catch(err => res.send({ err }));
         });

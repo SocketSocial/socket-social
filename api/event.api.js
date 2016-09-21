@@ -13,6 +13,8 @@ module.exports = function (app, models) {
             res.send({
                 'error': 'A new event must have a date, a location and a description.'
             });
+
+            return false;
         }
 
         models.Event.create({ date, location, description })
@@ -35,7 +37,7 @@ module.exports = function (app, models) {
     app.get('/events/:id', (req, res) => {
         const id = req.params.id;
 
-        model.Event.findOne({
+        models.Event.findOne({
             where: { id }
         })
             .then(event => {
@@ -57,11 +59,18 @@ module.exports = function (app, models) {
             });
         }
 
-        model.Event.update({ date, description, location }, {
+        models.Event.update({ date, description, location }, {
             where: { id }
         })
-            .then(event => {
-                res.send({ 'success': true, event });
+            .then(() => {
+
+                models.Event.findOne({
+                    where: { id }
+                })
+                    .then(event => {
+                        res.send({ 'success': true, event });
+                    })
+                    .catch(err => res.send({ err }));
             })
             .catch(err => res.send({ err }));
     });
