@@ -1,25 +1,9 @@
 // Dependencies
-var express = require('express');
-var path    = require('path');
-var mysql   = require('mysql');
+const express = require('express');
+const path    = require('path');
 
 // Database
-var connection = mysql.createConnection({
-  host     : '104.236.222.93',
-  user     : 'root',
-  password : 'hack2016!',
-  database : 'socketsocial'
-});
-
-connection.connect();
-
-connection.query('SELECT 1 + 1 AS solution', function(err, rows, fields) {
-  if (err) throw err;
-
-  console.log('The solution is: ', rows[0].solution);
-});
-
-connection.end();
+const db = require('./config/db');
 
 // Instantiate app
 var app = express();
@@ -27,12 +11,13 @@ var app = express();
 // Set static folder
 app.use(express.static('public'));
 
+// API
+const api = require('./api/api')(app, db);
+
 // Routing
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+const routes = require('./routes/routes')(app);
 
 // Start server
-app.listen(3000, function () {
+app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
 });

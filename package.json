@@ -17,7 +17,23 @@
   },
   "homepage": "https://github.com/SocketSocial/socket-social#readme",
   "devDependencies": {
+    "babel-preset-es2015": "^6.14.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "buffer": "^4.9.1",
     "express": "^4.14.0",
-    "mysql": "^2.11.1"
+    "gulp": "^3.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "merge": "^1.2.0",
+    "mysql": "^2.11.1",
+    "rename": "^1.0.3",
+    "source": "0.0.3",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.7.0"
   }
 }
