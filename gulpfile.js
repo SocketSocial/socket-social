@@ -14,7 +14,7 @@ var babelify   = require('babelify'),
 
 var config = {
     js: {
-        src: 'index.js',       // Entry point
+        src: 'index.js',       // Entry point.
         outputDir: './dist/',  // Directory to save bundle to
         mapDir: './maps/',      // Subdirectory to save maps to
         outputFile: 'bundle.js' // Name to use for bundle
