@@ -1,11 +1,34 @@
 'use strict';
 
+const bodyParser = require('body-parser');
+const md5 = require('md5');
+
+
 module.exports = function (app, sequelize, models) {
 
-    app.get('/test', (req, res) => {
+    app.get('/signin', (req, res) => {
+       const email = req.body.email;
+       const password = md5(req.body.password);
+
+        models.User.findOne({
+            where: {
+                email
+            }
+        })
+            .then(result => {
+                console.log(result);
+            });
+
+    });
+
+    app.get('/users/create', (req, res) => {
+
+        const email = req.body.email;
+        const password = md5(req.body.password);
+
         models.User.create({
-            email: 'cbryan@dealersocket.com',
-            password: 'hack2016!'
+            email,
+            password
         })
             .then(() => {
                 res.send({
