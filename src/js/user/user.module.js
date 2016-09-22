@@ -16,7 +16,7 @@ module.exports = class {
         if (!$container) throw new Error('makeCreateUsePanel must be given a container');
 
         const createUserPanelHtml   = require('./user.html').createUserPanelHtml;
-
+        // TODO: Test output to check for flasher
         $container.append(createUserPanelHtml);
         // TODO: test container has panel
 
@@ -27,7 +27,7 @@ module.exports = class {
 
         $createUserClear.on('click', e => this.clearCreateUser(e));
         $createUserSubmit.on('click', e => this.createUser(e));
-
+        
         // TODO: test create user clear buttom clears the user
         // TODO: test create user submit button adds the user to the db
     }

@@ -7,9 +7,6 @@ module.exports = function (app) {
     });
 
     app.get('/admin', (req, res) => {
-
-        const token = req.body.token;
-
         // if (!token || !authToken(token)) {
         //     res.render('../views/partials/auth_error')
         //     return false;
@@ -24,6 +21,6 @@ module.exports = function (app) {
  * Does a user have permission to access a restricted page?
  * @param {object} token - The body's token.
  */
-function authToken(token) {
+function checkToken(token) {
     return token.hasAdminAccess;
 }
