@@ -5,7 +5,7 @@
 module.exports = class {
 
     constructor() {
-        this.api = require('./hobby.methods');
+        this.api = require('./hobby.api');
     }
 
 };

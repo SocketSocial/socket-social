@@ -33,7 +33,7 @@ module.exports = {
             </div>
         `;
     },
-    createUserListHtml: () => {
+    createUserListPanelHtml: () => {
         return `
             <section class="panel panel-primary">
                 <header class="panel-heading">

@@ -5,7 +5,7 @@
 module.exports = class {
 
     constructor() {
-        this.api = require('./event.methods');
+        this.api = require('./event.api');
     }
 
 };

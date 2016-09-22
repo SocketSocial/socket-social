@@ -5,7 +5,7 @@
 module.exports = class {
 
     constructor() {
-        this.api = require('./user.methods');
+        this.api = require('./user.api');
     }
 
     /**
@@ -24,42 +24,17 @@ module.exports = class {
         $createUserSubmit.on('click', e => this.createUser(e));    }
 
     /**
-     * Attach a panel with functionality to display a list of users.
-     * @param {object} $container - A jQuery selector.
+     * Clear the 'email' and 'password' fields in the 'Create User' form.
+     * @param {object} e - Any passed events from an event handling method.
      */
-    makeUserList($container) {
-        const userListHtml = require('./user.html').createUserListHtml;
+    clearCreateUser(e) {
+        if (e) e.preventDefault();
 
-        $container.append(userListHtml);
+        const $createUserEmail      = $(' #create_user_email ');
+        const $createUserPassword   = $(' #create_user_password ');
 
-        const $userLists = $(' .user_list_rows ');
-
-        this.updateUserList($userLists);
-    }
-
-    /**
-     * Clear a user list, get all users from the server, then iterate over them and make table rows.
-     */
-    updateUserList($userList) {
-        $userList.html('');
-
-        this.api.getUsers()
-            .then(users => {
-                for (let user of users) {
-                    let row = `
-                        <tr>
-                            <td>
-                                <button class="btn btn-sm btn-default">...</button>
-                            </td>
-                            <td>${user.email}</td>
-                            <td>${user.id}</td>
-                        </tr>
-                    `;
-
-                    $userList.append(row);
-                }
-            },
-            err => console.error(err));
+        $createUserEmail.val('');
+        $createUserPassword.val('');
     }
 
     /**
@@ -91,12 +66,12 @@ module.exports = class {
         this.api.createUser(data)
             .then(result => {
                 if (result.success) {
-                    const $userLists = $(' .user_list_rows ');
+                    const $userListPanelPanels = $(' .user_list_rows ');
 
                     flashCreateUserSuccess(result.success);
                     clearCreateUser();
 
-                    this.updateUserList($userLists);
+                    this.updateUserListPanel($userListPanelPanels);
                 } else if (result.error) {
                     flashCreateUserError(result.error);
                 } else {
@@ -148,17 +123,43 @@ module.exports = class {
         }
 
     /**
-     * Clear the 'email' and 'password' fields in the 'Create User' form.
-     * @param {object} e - Any passed events from an event handling method.
+     * Attach a panel with functionality to display a list of users.
+     * @param {object} $container - A jQuery selector.
      */
-    clearCreateUser(e) {
-        if (e) e.preventDefault();
+    makeUserListPanel($container) {
+        const userListPanelHtml = require('./user.html').createUserListPanelHtml;
+        console.log(userListPanelHtml);
+        $container.append(userListPanelHtml);
 
-        const $createUserEmail      = $(' #create_user_email ');
-        const $createUserPassword   = $(' #create_user_password ');
+        const $userListPanel = $(' .user_list_rows ');
+        console.log($userListPanel.length > 0);
 
-        $createUserEmail.val('');
-        $createUserPassword.val('');
+        this.updateUserListPanel($userListPanel);
+    }
+
+    /**
+     * Clear a user list, get all users from the server, then iterate over them and make table rows.
+     */
+    updateUserListPanel($userListPanel) {
+        $userListPanel.html('');
+
+        this.api.getUsers()
+            .then(users => {
+                for (let user of users) {
+                    let row = `
+                        <tr>
+                            <td>
+                                <button class="btn btn-sm btn-default">...</button>
+                            </td>
+                            <td>${user.email}</td>
+                            <td>${user.id}</td>
+                        </tr>
+                    `;
+
+                    $userListPanel.append(row);
+                }
+            },
+            err => console.error(err));
     }
 
 };
