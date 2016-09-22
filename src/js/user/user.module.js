@@ -128,11 +128,10 @@ module.exports = class {
      */
     makeUserListPanel($container) {
         const userListPanelHtml = require('./user.html').createUserListPanelHtml;
-        console.log(userListPanelHtml);
+
         $container.append(userListPanelHtml);
 
         const $userListPanel = $(' .user_list_rows ');
-        console.log($userListPanel.length > 0);
 
         this.updateUserListPanel($userListPanel);
     }
