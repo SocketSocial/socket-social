@@ -15,12 +15,13 @@ $(document).ready(() => {
     const $createUserPanel      = $(' #create_user_panel ');
     const $userListPanel        = $(' #admin_user_list ');
     const $memberList           = $(' #member_list ');
+    const $memberDetail         = $(' #member_detail ');
 
     // Admin
     USER_MODULE.makeCreateUserPanel($createUserPanel);
     USER_MODULE.makeUserListPanel($userListPanel);
 
     // Members
-    USER_MODULE.makeMemberHobbyList($memberList);
+    USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
 
 });

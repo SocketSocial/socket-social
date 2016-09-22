@@ -187,22 +187,54 @@ module.exports = class {
 
     /**
      *
-     * @param {object} $container - A jQuery selector.
+     * @param {object} $container - A jQuery selector (tbody).
+     * @param {object} $detailContainer - Another selector for detail view.
      */
-    makeMemberHobbyList($container) {
+    makeMemberHobbyList($container, $detailContainer) {
+        const _this = this;
+
         this.api.getUsers()
             .then(users => {
                 for (let user of users) {
+                    let id    = user.id;
+                    let name  = user.name;
+                    let email = user.email;
+
                     let row = `
-                        <tr>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
+                        <tr class="member_row" data-id="${id}" data-name="${name}" data-email="${email}">
+                            <td>${name}</td>
+                            <td>${email}</td>
                         </tr>
                     `;
+
                     $container.append(row);
                 }
+
+                const $memberRow = $(' .member_row ');
+
+                $memberRow.each(function () {
+                    $(this).on('click', () => {
+                        _this.makeMemberProfileCard($(this), $detailContainer);
+                    });
+                });
             },
             err => console.error({ err }));
+    }
+
+    /**
+     * @param {object} $memberRow - A row with data attributes.
+     * @param {object} $detailContainer - A jQuery selector.
+     */
+    makeMemberProfileCard($memberRow, $detailContainer) {
+        const id    = $memberRow.attr('data-id');
+        const name  = $memberRow.attr('data-name');
+        const email = $memberRow.attr('data-email');
+
+        const memberProfileCardHtml = require('./user.html').createMemberProfileCardHtml(name, email);
+
+        $detailContainer.html('');
+
+        $detailContainer.append(memberProfileCardHtml);
     }
 
 };

@@ -66,5 +66,45 @@ module.exports = {
                 </footer>
             </section>
         `;
+    },
+    createMemberProfileCardHtml: (name, email) => {
+        return `
+            <div class="member_profile_card">
+                <section class="row">
+                    <div class="row">
+                        <section class="col-md-4">
+                            <img src="http://placehold.it/220x220" class="img-responsive center-block">
+                        </section>
+                        <sectiom class="col-md-8">
+                            <h3>${name}</h3>
+                            <h4>${email}</h4>
+                            <br />
+                            <span>
+                                <i class="fa fa-2x fa-facebook"></i>
+                                &nbsp;
+                                <i class="fa fa-2x fa-twitter"></i>
+                            </span>
+                        </sectiom>
+                    </div>
+                    <div class="row">
+                        <section class="col-md-12">
+                            <hr />
+                        </section>
+                    </div>
+                    <div class="row">
+                        <section class="col-md-12 member_info">
+                            <label>Title</label>
+                            <p>Some Title</p>
+                            <br />
+                            <label>About me</label>
+                            <p>Lorem ipsum</p>
+                            <br />
+                            <label>Hobbies</label>
+                            <p>Hobbies</p>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        `;
     }
 };
