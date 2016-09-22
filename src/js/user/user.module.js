@@ -1,3 +1,7 @@
+/**
+ * @class UserModule
+ * Functionality taking API information related to users from the backend and creating components.
+ */
 module.exports = class {
 
     constructor() {

@@ -1,11 +1,10 @@
 $(document).ready(() => {
     // Module Dependencies
-    const UserModule = require('./user/user.module');
+    const UserModule  = require('./user/user.module');
+    const EventModule = require('./event/event.module');
+    const HobbyModule = require('./hobby/hobby.module');
 
-    // API methods
-    const event = require('./api/event.methods');   // Event API methods
-    const hobby = require('./api/hobby.methods');   // Hobby API methods
-
+    // Users
     const USER_MODULE = new UserModule();
 
     const $createUserPanel = $(' #create_user_panel ');
@@ -13,5 +12,11 @@ $(document).ready(() => {
 
     USER_MODULE.makeCreateUserPanel($createUserPanel);
     USER_MODULE.makeUserList($userList);
+
+    // Events
+    const EVENT_MODULE = new EventModule();
+
+    // Hobbies
+    const HOBBY_MODULE = new HobbyModule();
 
 });
