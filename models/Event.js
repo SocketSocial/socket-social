@@ -12,7 +12,7 @@ module.exports = function (sequelize) {
       type: Sequelize.STRING
     },
     date: {
-      type: Sequelize.DATE
+      type: Sequelize.STRING
     }
   });
 

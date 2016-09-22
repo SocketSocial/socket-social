@@ -27,6 +27,13 @@ module.exports = function (app) {
         res.redirect('/');
     });
 
+    app.get('/event/new', (req, res) => {
+        res.render('../views/new_event', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
+    });
+
     app.get('/members', (req, res) => {
         res.render('../views/members', {
             isSignedIn: req.session.isSignedIn,
