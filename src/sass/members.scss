@@ -1,23 +1,28 @@
+.user_list_title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #060617;
+}
 @media only screen and (min-width : 320px) {
-  .xs-middle {
-    text-align: center;
-  }    
+    .xs-middle {
+      text-align: center;
+    }
 }
 
 @media only screen and (min-width : 480px) {
-  .xs-middle {
-    text-align: center;
-  }
+    .xs-middle {
+      text-align: center;
+    }
 }
 
 @media only screen and (min-width : 768px) {
-  .xs-middle {
-    text-align: center;
-    }
-  }
+    .xs-middle {
+      text-align: center;
+      }
+}
 
 @media only screen and (min-width : 1200px) {
     .xs-middle {
       text-align: left;
     }
-   }
+ }
