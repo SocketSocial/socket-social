@@ -4,3 +4,7 @@
 .user_list_panel {
   max-height: 40rem;
   overflow: auto; }
+
+.ss-content {
+  padding-top: 4rem;
+  padding-bottom: 4rem; }

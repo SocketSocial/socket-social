@@ -1,7 +1,36 @@
 <header class="container-fluid">
-    <section class="row">
+    <section class="row well">
         <div class="col-md-12">
             <h1 class="page-header">SocketSocial <small>We Are Social</small></h1>
+        </div>
+        <div class="col-md-12">
+            <div class="navbar navbar-info">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                </div>
+                <div class="navbar-collapse collapse navbar-responsive-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/">Events</a></li>
+                    <li><a href="/members">Members</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <% if (!isSignedIn) { %>
+                    <li> <a href="javascript:void(0)">You are not signed in.</a></li>
+                    <li><a href="/signin"><strong>Sign in</strong></a></li>
+                    <li><a href="javascript:void(0)"><em>or</em></a></li>
+                    <li><a href="/signup"><strong>Sign up</strong></a></li>
+                    <% } else { %>
+                    <li><a href="/profile">Signed in as <%= email %></a></li>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+            </div>
         </div>
     </section>
 </header>

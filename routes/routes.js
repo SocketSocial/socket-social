@@ -3,17 +3,38 @@
 module.exports = function (app) {
 
     app.get('/', (req, res) => {
-        res.render('../views/events');
+        res.render('../views/events', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
     });
 
     app.get('/signin', (req, res) => {
-        res.render('../views/signin');
+        res.render('../views/signin', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
     });
 
     app.get('/signup', (req, res) => {
-        res.render('../views/signup');
+        res.render('../views/signup', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
     });
 
+    app.get('/events', (req, res) => {
+        res.redirect('/');
+    });
+
+    app.get('/members', (req, res) => {
+        res.render('../views/members', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
+    });
+
+    // Administrative Controls
     app.get('/admin', (req, res) => {
         if (!req.session.isAdmin) {
             res.redirect('/');
@@ -25,7 +46,10 @@ module.exports = function (app) {
         //     return false;
         // }
 
-        res.render('../views/admin/admin');
+        res.render('../views/admin/admin', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
     });
 
 };

@@ -2,7 +2,7 @@ module.exports = {
     createUserPanelHtml: () => {
         return `
             <section id="create_user_flasher" class="alert alert-success panel-alert"></section>
-            <div class="panel panel-primary">
+            <div class="panel panel-info">
                 <header class="panel-heading">
                     <h3>
                         <i class="fa fa-user"></i><i class="fa fa-plus"></i> &nbsp;Create User
@@ -35,7 +35,7 @@ module.exports = {
     },
     createUserListPanelHtml: () => {
         return `
-            <section class="panel panel-primary">
+            <section class="panel panel-info">
                 <header class="panel-heading">
                     <h3><i class="fa fa-users"></i> User List</h3>
                 </header>

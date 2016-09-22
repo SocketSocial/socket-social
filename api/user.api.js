@@ -16,6 +16,9 @@ module.exports = function (app, models) {
 
                 if (user.dataValues.password === password) {
                     // Valid password
+                    req.session.isSignedIn = true;
+                    req.session.email      = email;
+
                     res.send({ 'success': true, user });
                 } else {
                     // Invalid password
