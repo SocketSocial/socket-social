@@ -42,44 +42,12 @@
                                         <h1><i class="fa fa-cog"></i> Users</h1>
                                     </section>
                                 </div>
-                                <div class="col-md-8"> <!-- Create User -->
-                                    <section id="create_user_flasher" class="alert alert-success"></section>
-                                    <h3><i class="fa fa-user"></i><i class="fa fa-plus"></i> &nbsp;Create User</h3>
-                                    <form id="create_user_form" class="col-md-12">
-                                        <section class="row">
-                                            <fieldset class="form-group">
-                                                <label>Email</label>
-                                                <input id="create_user_email" type="email" class="form-control" required />
-                                            </fieldset>
-                                            <fieldset class="form-group">
-                                                <label>Password</label>
-                                                <input id="create_user_password" type="password" class="form-control" required />
-                                            </fieldset>
-                                            <span class="pull-right">
-                                                <button id="create_user_clear" class="btn btn-default" type="button"><i class="fa fa-trash"></i> Clear</button>
-                                                <button id="create_user_submit" class="btn btn-default" type="button"><i class="fa fa-arrow-right"></i> Submit</button>
-                                            </span>
-                                        </section>
-                                    </form>
-                                </div><!-- End Create User -->
-                                <div class="col-md-4"><!-- User List -->
-                                    <section class="panel panel-default">
-                                        <header class="panel-heading">
-                                            <h3><i class="fa fa-users"></i> User List <small>&nbsp;&nbsp;(click to sign in as a user)</small></h3>
-                                        </header>
-                                        <div class="panel-body">
-                                            <table class="table user_table">
-                                                <thead>
-                                                    <tr>
-                                                        <td>User</td>
-                                                        <td>ID</td>
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                            </table>
-                                        </div>
-                                    </section>
-                                </div><!-- End User List -->
+                                <div id="create_user_panel" class="col-md-8">
+                                    <!-- UserModule#makeCreateUserPanel() -->
+                                </div>
+                                <div id="admin_user_list" class="col-md-4">
+                                    <!-- UserModule#makeUserList() -->
+                                </div>
                                 <!-- ADMIN CONTENT -->
                             </section>
                         </div>

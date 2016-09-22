@@ -1,6 +1,6 @@
-.table tbody tr {
-  transition: background-color 0.5s ease-in, color 0.25s ease-in; }
-  .table tbody tr:hover {
-    cursor: pointer;
-    background-color: #666;
-    color: white; }
+.panel-alert {
+  display: none; }
+
+.user_list_panel {
+  max-height: 40rem;
+  overflow: auto; }
