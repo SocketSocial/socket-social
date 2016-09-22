@@ -6,6 +6,10 @@
         <link rel="stylesheet" href="/css/vendor/bootstrap.min.css">
         <link rel="stylesheet" href="/css/vendor/bootstrap-material-design.min.css">
         <link rel="stylesheet" href="/css/vendor/ripples.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+
+        <!-- Custom -->
+        <link rel="stylesheet" href="/css/admin.css">
     </head>
     <body>
         <main class="container">
@@ -13,13 +17,34 @@
                 <div class="col-md-12">
                     <section class="panel panel-primary">
                         <header class="panel-heading">
-                            <h1>Administrative Controls</h1>
+                            <h1><i class="fa fa-cogs"></i> Administrative Controls</h1>
+                            <section class="row">
+                                <div class="col-md-12">
+                                    <div class="btn-group btn-group-justified">
+                                        <section class="btn-group">
+                                            <button class="btn btn-raised"><i class="fa fa-cog"></i> Users</button>
+                                        </section>
+                                        <section class="btn-group">
+                                            <button class="btn btn-raised"><i class="fa fa-cog"></i> Events</button>
+                                        </section>
+                                        <section class="btn-group">
+                                            <button class="btn btn-raised"><i class="fa fa-cog"></i> Hobbies</button>
+                                        </section>
+                                    </div>
+                                </div>
+                            </section>
                         </header>
                         <div class="panel-body">
                             <section class="row">
+                                <!-- ADMIN CONTENT -->
+                                <div class="col-md-12">
+                                    <section class="page-header">
+                                        <h1><i class="fa fa-cog"></i> Users</h1>
+                                    </section>
+                                </div>
                                 <div class="col-md-8"> <!-- Create User -->
                                     <section id="create_user_flasher" class="alert alert-success"></section>
-                                    <h3>Create User</h3>
+                                    <h3><i class="fa fa-user"></i><i class="fa fa-plus"></i> &nbsp;Create User</h3>
                                     <form id="create_user_form" class="col-md-12">
                                         <section class="row">
                                             <fieldset class="form-group">
@@ -31,24 +56,31 @@
                                                 <input id="create_user_password" type="password" class="form-control" required />
                                             </fieldset>
                                             <span class="pull-right">
-                                                <button id="create_user_clear" class="btn btn-default" type="button">Clear</button>
-                                                <button id="create_user_submit" class="btn btn-default" type="button">Submit</button>
+                                                <button id="create_user_clear" class="btn btn-default" type="button"><i class="fa fa-trash"></i> Clear</button>
+                                                <button id="create_user_submit" class="btn btn-default" type="button"><i class="fa fa-arrow-right"></i> Submit</button>
                                             </span>
                                         </section>
                                     </form>
-                                </div><!-- Create User -->
+                                </div><!-- End Create User -->
                                 <div class="col-md-4"><!-- User List -->
-                                    <h3>User List</h3>
-                                    <table class="table user_table">
-                                        <thead>
-                                            <tr>
-                                                <td>User</td>
-                                                <td>ID</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody></tbody>
-                                    </table>
-                                </div><!-- User List -->
+                                    <section class="panel panel-default">
+                                        <header class="panel-heading">
+                                            <h3><i class="fa fa-users"></i> User List <small>&nbsp;&nbsp;(click to sign in as a user)</small></h3>
+                                        </header>
+                                        <div class="panel-body">
+                                            <table class="table user_table">
+                                                <thead>
+                                                    <tr>
+                                                        <td>User</td>
+                                                        <td>ID</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </section>
+                                </div><!-- End User List -->
+                                <!-- ADMIN CONTENT -->
                             </section>
                         </div>
                     </section>

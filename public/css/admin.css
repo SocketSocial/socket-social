@@ -1,0 +1,6 @@
+.table tbody tr {
+  transition: background-color 0.5s ease-in, color 0.25s ease-in; }
+  .table tbody tr:hover {
+    cursor: pointer;
+    background-color: #666;
+    color: white; }
