@@ -12,6 +12,10 @@ module.exports = {
                     <form id="create_user_form" class="col-md-12">
                         <section class="row">
                             <fieldset class="form-group">
+                                <label>Name</label>
+                                <input id="create_user_name" type="email" class="form-control" required />
+                            </fieldset>
+                            <fieldset class="form-group">
                                 <label>Email</label>
                                 <input id="create_user_email" type="email" class="form-control" required />
                             </fieldset>

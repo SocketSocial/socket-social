@@ -43,7 +43,7 @@ module.exports = class {
         const $createUserPassword   = $(' #create_user_password ');
 
         // TODO: test forms exist
-
+        $createUserName.val('');
         $createUserEmail.val('');
         $createUserPassword.val('');
 
@@ -58,10 +58,12 @@ module.exports = class {
         if (e) e.preventDefault();
 
         const $createUserFlasher    = $(' #create_user_flasher ');
+        const $createUserName       = $(' #create_user_name ');
         const $createUserEmail      = $(' #create_user_email ');
         const $createUserPassword   = $(' #create_user_password ');
 
         const data = {
+            name: $createUserName.val(),
             email: $createUserEmail.val(),
             password: $createUserPassword.val()
         };
@@ -181,6 +183,26 @@ module.exports = class {
                 }
             },
             err => console.error(err));
+    }
+
+    /**
+     *
+     * @param {object} $container - A jQuery selector.
+     */
+    makeMemberHobbyList($container) {
+        this.api.getUsers()
+            .then(users => {
+                for (let user of users) {
+                    let row = `
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.email}</td>
+                        </tr>
+                    `;
+                    $container.append(row);
+                }
+            },
+            err => console.error({ err }));
     }
 
 };

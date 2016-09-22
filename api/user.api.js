@@ -30,12 +30,13 @@ module.exports = function (app, models) {
 
     // Create a new user
     app.post('/signup', (req, res) => {
+        const name      = req.body.name;
         const email     = req.body.email;
         const password  = md5(req.body.password);
         const isAdmin   = req.body.isAdmin || false;
 
-        if (!email || !password) {
-            res.send({ 'error': 'Malformed signup: A user must have an email and a password.' });
+        if (!name || !email || !password) {
+            res.send({ 'error': 'Malformed signup: A user must have a name, an email and a password.' });
             return false;
         }
 
@@ -53,7 +54,7 @@ module.exports = function (app, models) {
 
                 } else {
 
-                    models.User.create({ email, password, isAdmin })
+                    models.User.create({ name, email, password, isAdmin })
                         .then(user => {
                             res.send({ 'success': `A new user was created for ${email}.`, user });
                         })
