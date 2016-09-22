@@ -16,12 +16,20 @@ $(document).ready(() => {
     const $userListPanel        = $(' #admin_user_list ');
     const $memberList           = $(' #member_list ');
     const $memberDetail         = $(' #member_detail ');
+    const $eventListPanel       = $(' #event_list_panel ');
+    const $createEventPanel     = $(' #create_event_panel ');
+    const $eventDetail          = $(' #event_detail ');
 
     // Admin
-    USER_MODULE.makeCreateUserPanel($createUserPanel);
+    // USER_MODULE.makeCreateUserPanel($createUserPanel);
     USER_MODULE.makeUserListPanel($userListPanel);
+
+    // Events
+    EVENT_MODULE.makeCreateEventPanel($createEventPanel);
+    EVENT_MODULE.makeListEventsPanel($eventListPanel, $eventDetail);
 
     // Members
     USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
+
 
 });
