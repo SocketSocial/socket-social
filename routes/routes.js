@@ -6,7 +6,20 @@ module.exports = function (app) {
         res.render('../views/events');
     });
 
+    app.get('/signin', (req, res) => {
+        res.render('../views/signin');
+    });
+
+    app.get('/signup', (req, res) => {
+        res.render('../views/signup');
+    });
+
     app.get('/admin', (req, res) => {
+        if (!req.session.isAdmin) {
+            res.redirect('/');
+            return false;
+        }
+
         // if (!token || !authToken(token)) {
         //     res.render('../views/partials/auth_error')
         //     return false;
@@ -16,11 +29,3 @@ module.exports = function (app) {
     });
 
 };
-
-/**
- * Does a user have permission to access a restricted page?
- * @param {object} token - The body's token.
- */
-function checkToken(token) {
-    return token.hasAdminAccess;
-}

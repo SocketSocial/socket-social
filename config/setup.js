@@ -4,9 +4,6 @@ const express       = require('express');
 const bodyParser    = require('body-parser');
 const cookieParser  = require('cookie-parser');
 const cookieSession = require('cookie-session');
-const Chance        = require('chance');
-
-const chance        = new Chance();
 
 module.exports = function (app) {
     app.set('view engine', 'ejs');
@@ -15,7 +12,7 @@ module.exports = function (app) {
     app.use(bodyParser());
     app.use(cookieSession({
         name: 'session',
-        keys: ['key1', 'key2']
+        keys: ['key1', 'key2', 'key3']
     }));
     app.use(express.static('public'));
 };

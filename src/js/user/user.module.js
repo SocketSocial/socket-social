@@ -27,7 +27,7 @@ module.exports = class {
 
         $createUserClear.on('click', e => this.clearCreateUser(e));
         $createUserSubmit.on('click', e => this.createUser(e));
-        
+
         // TODO: test create user clear buttom clears the user
         // TODO: test create user submit button adds the user to the db
     }
@@ -71,11 +71,11 @@ module.exports = class {
             return false;
         }
 
-        // TODO: add email verification for @dealersocket.com
         const isDealerSocketEmail = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@dealersocket.com$/.test(data.email);
+
         if (!isDealerSocketEmail) {
-            flashCreateUserError('A dealersocket email is required to join SocketSocial.');
-            return falsel
+            flashCreateUserError('A DealerSocket email is required to join SocketSocial. (@dealersocket.com)');
+            return false;
         }
 
         if (data.password.length < 6) {
@@ -85,6 +85,7 @@ module.exports = class {
 
         this.api.createUser(data)
             .then(result => {
+                console.log(result);
                 if (result.success) {
                     const $userListPanelPanels = $(' .user_list_rows ');
 

@@ -29,6 +29,12 @@ module.exports = function (app, models) {
     app.post('/signup', (req, res) => {
         const email     = req.body.email;
         const password  = md5(req.body.password);
+        const isAdmin   = req.body.isAdmin || false;
+
+        if (!email || !password) {
+            res.send({ 'error': 'Malformed signup: A user must have an email and a password.' });
+            return false;
+        }
 
         // Check to see if email is already in use
         models.User.findOne({
@@ -44,7 +50,7 @@ module.exports = function (app, models) {
 
                 } else {
 
-                    models.User.create({ email, password })
+                    models.User.create({ email, password, isAdmin })
                         .then(user => {
                             res.send({ 'success': `A new user was created for ${email}.`, user });
                         })
