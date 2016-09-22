@@ -7,13 +7,15 @@ module.exports = function (sequelize) {
     const Participant   = require('./Participant')(sequelize);
     const Hobby         = require('./Hobby')(sequelize);
 
-    // Define relationships here
-
-    return {
+    const models =  {
         User,
         Event,
         Hobby,
         Participant
-    }
+    };
 
+    const associations = require('./associations')(models);
+    const sync         = require('./sync')(models);
+
+    return models;
 }

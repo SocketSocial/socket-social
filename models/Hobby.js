@@ -12,8 +12,5 @@ module.exports = function (sequelize) {
         }
     });
 
-    Hobby.sync();
-
     return Hobby;
-    
 };

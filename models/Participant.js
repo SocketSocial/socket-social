@@ -15,10 +15,5 @@ module.exports = function (sequelize) {
 
     });
 
-    // hasone User
-    // hasmany Events
-
-    Participant.sync();
-
     return Participant;
 };

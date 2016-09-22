@@ -3,12 +3,16 @@
 module.exports = function (app) {
 
     app.get('/', (req, res) => {
+        console.log(req.session);
+        req.session.cookie.test = false;
+        console.log(req.session);
+        
         res.render('../views/events');
     });
 
     app.get('/admin', (req, res) => {
+        console.log(req.session);
 
-        const token = req.body.token;
 
         // if (!token || !authToken(token)) {
         //     res.render('../views/partials/auth_error')

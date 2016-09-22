@@ -14,14 +14,15 @@ module.exports = class {
      */
     makeCreateUserPanel($container) {
         const createUserPanelHtml   = require('./user.html').createUserPanelHtml;
-
+        // TODO: Test output to check for flasher
         $container.append(createUserPanelHtml);
 
         const $createUserClear   = $(' #create_user_clear ');
         const $createUserSubmit  = $(' #create_user_submit ');
 
         $createUserClear.on('click', e => this.clearCreateUser(e));
-        $createUserSubmit.on('click', e => this.createUser(e));    }
+        $createUserSubmit.on('click', e => this.createUser(e));
+    }
 
     /**
      * Clear the 'email' and 'password' fields in the 'Create User' form.
