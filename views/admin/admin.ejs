@@ -1,0 +1,45 @@
+<% include ../partials/top %>
+<main class="container">
+    <section class="row">
+        <div class="col-md-12">
+            <section class="panel panel-primary">
+                <header class="panel-heading">
+                    <h1><i class="fa fa-cogs"></i> Administrative Controls</h1>
+                    <section class="row">
+                        <div class="col-md-12">
+                            <div class="btn-group btn-group-justified">
+                                <section class="btn-group">
+                                    <button class="btn btn-raised"><i class="fa fa-cog"></i> Users</button>
+                                </section>
+                                <section class="btn-group">
+                                    <button class="btn btn-raised"><i class="fa fa-cog"></i> Events</button>
+                                </section>
+                                <section class="btn-group">
+                                    <button class="btn btn-raised"><i class="fa fa-cog"></i> Hobbies</button>
+                                </section>
+                            </div>
+                        </div>
+                    </section>
+                </header>
+                <div class="panel-body">
+                    <section class="row">
+                        <!-- ADMIN CONTENT -->
+                        <div class="col-md-12">
+                            <section class="page-header">
+                                <h1><i class="fa fa-cog"></i> Users</h1>
+                            </section>
+                        </div>
+                        <div id="create_user_panel" class="col-md-8">
+                            <!-- UserModule#makeCreateUserPanel() -->
+                        </div>
+                        <div id="admin_user_list" class="col-md-4">
+                            <!-- UserModule#makeUserList() -->
+                        </div>
+                        <!-- ADMIN CONTENT -->
+                    </section>
+                </div>
+            </section>
+        </div>
+    </section>
+</main>
+<% include ../partials/bottom %>
