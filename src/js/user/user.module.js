@@ -13,15 +13,24 @@ module.exports = class {
      * @param {object} $container - A jQuery selector.
      */
     makeCreateUserPanel($container) {
+        if (!$container) throw new Error('makeCreateUsePanel must be given a container');
+
         const createUserPanelHtml   = require('./user.html').createUserPanelHtml;
 
         $container.append(createUserPanelHtml);
+        // TODO: test container has panel
 
         const $createUserClear   = $(' #create_user_clear ');
         const $createUserSubmit  = $(' #create_user_submit ');
 
+        // TODO: Test buttons exist
+
         $createUserClear.on('click', e => this.clearCreateUser(e));
-        $createUserSubmit.on('click', e => this.createUser(e));    }
+        $createUserSubmit.on('click', e => this.createUser(e));
+
+        // TODO: test create user clear buttom clears the user
+        // TODO: test create user submit button adds the user to the db
+    }
 
     /**
      * Clear the 'email' and 'password' fields in the 'Create User' form.
@@ -33,8 +42,12 @@ module.exports = class {
         const $createUserEmail      = $(' #create_user_email ');
         const $createUserPassword   = $(' #create_user_password ');
 
+        // TODO: test forms exist
+
         $createUserEmail.val('');
         $createUserPassword.val('');
+
+        // TODO: test forms are clear
     }
 
     /**
@@ -58,7 +71,14 @@ module.exports = class {
             return false;
         }
 
-        if (!data.password.length) {
+        // TODO: add email verification for @dealersocket.com
+        const isDealerSocketEmail = /^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@dealersocket.com$/.test(data.email);
+        if (!isDealerSocketEmail) {
+            flashCreateUserError('A dealersocket email is required to join SocketSocial.');
+            return falsel
+        }
+
+        if (data.password.length < 6) {
             flashCreateUserError('Your password must be at least six characters.');
             return false;
         }
