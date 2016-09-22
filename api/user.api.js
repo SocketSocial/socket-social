@@ -46,11 +46,18 @@ module.exports = function (app, models) {
 
                     models.User.create({ email, password })
                         .then(user => {
-                            res.send({ 'success': true, user });
+                            res.send({ 'success': `A new user was created for ${email}.`, user });
                         })
                         .catch(err => res.send({ err }));
                 }
             })
+            .catch(err => res.send({ err }));
+    });
+
+    // Get all users
+    app.get('/users', (req, res) => {
+        models.User.findAll()
+            .then(users => res.send(users))
             .catch(err => res.send({ err }));
     });
 

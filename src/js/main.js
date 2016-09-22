@@ -1,76 +1,108 @@
 $(document).ready(() => {
+    const user  = require('./api/user.methods');    // User API methods
+    const event = require('./api/event.methods');   // Event API methods
+    const hobby = require('./api/hobby.methods');   // Hobby API methods
 
-    function createEvent(options) {
-        return new Promise((resolve, reject) => {
-            if (!options.date || !options.location || !options.description) {
-                console.error('createEvent must be called with a date, a location, and a description.');
-                reject();
-            }
+    updateUserList();                               // Initialize user lists
+
+    // Create User
+    (() => {
+        const $createUserForm       = $(' #create_user_form ');
+        const $createUserFlasher    = $(' #create_user_flasher ');
+        const $createUserEmail      = $(' #create_user_email ');
+        const $createUserPassword   = $(' #create_user_password ');
+        const $createUserClear      = $(' #create_user_clear ');
+        const $createUserSubmit     = $(' #create_user_submit ');
+
+        $createUserFlasher.hide();
+        $createUserClear.on('click', clearCreateUser);
+        $createUserSubmit.on('click', e => {
+            e.preventDefault();
 
             const data = {
-                date: options.date,
-                location: options.location,
-                description: options.description
+                email: $createUserEmail.val(),
+                password: $createUserPassword.val()
             };
 
-            $.ajax({
-                type: 'POST',
-                url: `/events`,
-                dataType: 'JSON',
-                data,
-                success: result => resolve(result),
-                error: err => reject(err)
-            });
+            user.createUser(data)
+                .then(result => {
+                    if (result.success) {
+                        flashCreateUserSuccess(result.success);
+                        clearCreateUser();
+                        updateUserList();
+                    } else if (result.error) {
+                        flashCreateUserError(result.error);
+                    } else {
+                        throw new Error('Unexpected fetch in createUser method');
+                    }
+                },
+                err => console.error(err));
         });
-    }
 
-    function getEvent(id) {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                type: 'GET',
-                url: `/events/${id}`,
-                dataType: 'JSON',
-                success: result => resolve(result),
-                error: err => reject(err)
-            });
-        });
-    }
+        /**
+         * Clear the 'email' and 'password' fields in the 'Create User' form.
+         * @param {object} e - Any passed events from an event handling method.
+         */
+        function clearCreateUser(e) {
+            if (e) e.preventDefault();
+            $createUserEmail.val('');
+            $createUserPassword.val('');
+        }
 
-    function getEvents() {
-        return new Promise((resolve, reject) => {
-            $.ajax({
-                type: 'GET',
-                url: '/events/',
-                dataType: 'JSON',
-                success: result => resolve(result),
-                error: err => reject(err)
-            });
-        });
-    }
+        /**
+         * Show a green alert notifying the user that a new user was created.
+         * @param {string} message - The message for the flasher.
+         */
+        function flashCreateUserSuccess(message) {
+            $createUserFlasher.removeClass();
+            $createUserFlasher.addClass('alert');
+            $createUserFlasher.addClass('alert-success');
+            $createUserFlasher.text(message);
+            $createUserFlasher.fadeIn();
+            setTimeout(() => {
+                $createUserFlasher.fadeOut();
+            }, 3000);
+        }
 
-    function updateEvent(options) {
-        return new Promise((resolve, reject) => {
-            if (!options.id || !options.date || !options.location || !options.description) {
-                console.error('createEvent must be called with an id, a date, a location, and a description.');
-                reject();
-            }
+        /**
+         * Show a red alert notifying the user that a new user was not created.
+         * @param {string} message - The message for the flasher.
+         */
+        function flashCreateUserError(message) {
+            $createUserFlasher.removeClass();
+            $createUserFlasher.addClass('alert');
+            $createUserFlasher.addClass('alert-danger');
+            $createUserFlasher.text(message);
+            $createUserFlasher.fadeIn();
+            setTimeout(() => {
+                $createUserFlasher.fadeOut();
+            }, 3000);
+        }
 
-            const data = {
-                id: options.id,
-                date: options.date,
-                description: options.description,
-                location: options.location
-            }
+    })();
 
-            $.ajax({
-                type: 'POST',
-                url: `/events/${options.id}`,
-                dataType: 'JSON',
-                data,
-                success: result => resolve(result),
-                error: err => reject(err)
-            });
-        });
+    /**
+     * Clear the user list, get all users from the server, then iterate over them and make table rows.
+     */
+    function updateUserList() {
+        const $userTable = $('tbody', ' .user_table ');
+
+        $userTable.html('');
+
+        user.getUsers()
+            .then(users => {
+                for (let user of users) {
+                    let row = `
+                        <tr>
+                            <td>${user.email}</td>
+                            <td>${user.id}</td>
+                        </tr>
+                    `;
+
+                    $userTable.append(row);
+                }
+            },
+            err => console.error(err));
     }
 
 });

@@ -27,7 +27,7 @@ module.exports = function (app, models) {
         app.get('/hobbies', (req, res) => {
             models.Hobby.findAll()
                 .then(hobbies => {
-                    res.send({ hobbies });
+                    res.send(hobbies);
                 })
                 .catch(err => res.send({ err }));
         });

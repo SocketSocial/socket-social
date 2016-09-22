@@ -27,9 +27,7 @@ module.exports = function (app, models) {
     // Get all events
     app.get('/events', (req, res) => {
         models.Event.findAll()
-            .then(events => {
-                res.send({ events });
-            })
+            .then(events =>  res.send(events))
             .catch(err => res.send({ err }));
     });
 
@@ -40,9 +38,7 @@ module.exports = function (app, models) {
         models.Event.findOne({
             where: { id }
         })
-            .then(event => {
-                res.send({ 'success': true, event });
-            })
+            .then(event => res.send({ 'success': true, event }))
             .catch(err => res.send({ err }));
     });
 
@@ -54,9 +50,7 @@ module.exports = function (app, models) {
         const location      = req.body.location;
 
         if (!date || !description || !location) {
-            res.send({
-                'error': 'When updating an event, date, description and location are required.'
-            });
+            res.send({ 'error': 'When updating an event, date, description and location are required.' });
         }
 
         models.Event.update({ date, description, location }, {
@@ -67,9 +61,7 @@ module.exports = function (app, models) {
                 models.Event.findOne({
                     where: { id }
                 })
-                    .then(event => {
-                        res.send({ 'success': true, event });
-                    })
+                    .then(event => res.send({ 'success': true, event }))
                     .catch(err => res.send({ err }));
             })
             .catch(err => res.send({ err }));
