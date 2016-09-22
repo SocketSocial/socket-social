@@ -33,5 +33,19 @@ module.exports = {
                 error: err => reject(err)
             });
         });
+    },
+    getUserInformation: (id, fields) => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'POST',
+                url: `/users/${id}/info`,
+                dataType: 'JSON',
+                data: {
+                    fields
+                },
+                success: info => resolve(info),
+                error: err => reject(err)
+            });
+        });
     }
 };

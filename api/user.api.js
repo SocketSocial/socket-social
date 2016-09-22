@@ -33,6 +33,8 @@ module.exports = function (app, models) {
         const name      = req.body.name;
         const email     = req.body.email;
         const password  = md5(req.body.password);
+        const title     = req.body.title || '';
+        const aboutMe   = req.body.aboutMe || '';
         const isAdmin   = req.body.isAdmin || false;
 
         if (!name || !email || !password) {
@@ -54,7 +56,7 @@ module.exports = function (app, models) {
 
                 } else {
 
-                    models.User.create({ name, email, password, isAdmin })
+                    models.User.create({ name, email, password, title, aboutMe, isAdmin })
                         .then(user => {
                             res.send({ 'success': `A new user was created for ${email}.`, user });
                         })
@@ -71,4 +73,27 @@ module.exports = function (app, models) {
             .catch(err => res.send({ err }));
     });
 
+    // Getting a user's info
+    app.post('/users/:id/info', (req, res) => {
+        const id     = req.params.id;
+        const fields = req.body.fields;
+
+        if (!fields) throw new Error('Malformed request: A user info request requires fields to grab');
+
+        models.User.findOne({
+            where: { id }
+        })
+            .then(user => {
+                const info = {};
+
+                for (let field of fields) {
+                    info[field] = user.dataValues[field];
+                }
+
+                res.send({ info });
+
+            })
+            .catch(err => res.send({ err }));
+
+    });
 }

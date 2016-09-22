@@ -14,6 +14,12 @@ module.exports = function (sequelize) {
     password: {
       type: Sequelize.STRING
     },
+    title: {
+      type: Sequelize.STRING
+    },
+    aboutMe: {
+      type: Sequelize.STRING
+    },
     isAdmin: {
       type: Sequelize.BOOLEAN
     }

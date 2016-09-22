@@ -39,15 +39,17 @@ module.exports = class {
     clearCreateUser(e) {
         if (e) e.preventDefault();
 
+        const $createUserName       = $(' #create_user_name ');
         const $createUserEmail      = $(' #create_user_email ');
         const $createUserPassword   = $(' #create_user_password ');
+        const $createUserTitle      = $(' #create_user_title ');
+        const $createUserAboutMe    = $(' #create_user_about_me ');
 
-        // TODO: test forms exist
         $createUserName.val('');
         $createUserEmail.val('');
         $createUserPassword.val('');
-
-        // TODO: test forms are clear
+        $createUserTitle.val('');
+        $createUserAboutMe.val('');
     }
 
     /**
@@ -61,11 +63,15 @@ module.exports = class {
         const $createUserName       = $(' #create_user_name ');
         const $createUserEmail      = $(' #create_user_email ');
         const $createUserPassword   = $(' #create_user_password ');
+        const $createUserTitle      = $(' #create_user_title ');
+        const $createUserAboutMe    = $(' #create_user_about_me ');
 
         const data = {
             name: $createUserName.val(),
             email: $createUserEmail.val(),
-            password: $createUserPassword.val()
+            password: $createUserPassword.val(),
+            title: $createUserTitle.val() || '',
+            aboutMe: $createUserAboutMe.val() || ''
         };
 
         if (!data.email.length) {
@@ -87,7 +93,6 @@ module.exports = class {
 
         this.api.createUser(data)
             .then(result => {
-                console.log(result);
                 if (result.success) {
                     const $userListPanelPanels = $(' .user_list_rows ');
 
@@ -230,11 +235,22 @@ module.exports = class {
         const name  = $memberRow.attr('data-name');
         const email = $memberRow.attr('data-email');
 
-        const memberProfileCardHtml = require('./user.html').createMemberProfileCardHtml(name, email);
+        const infoToGet = ['title', 'aboutMe'];
 
-        $detailContainer.html('');
+        this.api.getUserInformation(id, infoToGet)
+            .then(result => {
+                const title   = result.info.title;
+                const aboutMe = result.info.aboutMe;
 
-        $detailContainer.append(memberProfileCardHtml);
+                const options = { name, email, title, aboutMe };
+
+                const memberProfileCardHtml = require('./user.html').createMemberProfileCardHtml(options);
+
+                $detailContainer.html('');
+
+                $detailContainer.append(memberProfileCardHtml);
+            },
+            err => console.error(err));
     }
 
 };

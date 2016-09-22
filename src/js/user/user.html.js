@@ -23,6 +23,14 @@ module.exports = {
                                 <label>Password</label>
                                 <input id="create_user_password" type="password" class="form-control" required />
                             </fieldset>
+                            <fieldset class="form-group">
+                                <label>Title</label>
+                                <input id="create_user_title" type="text" class="form-control" />
+                            </fieldset>
+                            <fieldset class="form-group">
+                                <label>About me</label>
+                                <input id="create_user_about_me" type="text" class="form-control" />
+                            </fieldset>
                         </section>
                     </form>
                 </div>
@@ -67,7 +75,7 @@ module.exports = {
             </section>
         `;
     },
-    createMemberProfileCardHtml: (name, email) => {
+    createMemberProfileCardHtml: (options) => {
         return `
             <div class="member_profile_card">
                 <section class="row">
@@ -76,8 +84,8 @@ module.exports = {
                             <img src="http://placehold.it/220x220" class="img-responsive center-block">
                         </section>
                         <sectiom class="col-md-8">
-                            <h3>${name}</h3>
-                            <h4>${email}</h4>
+                            <h3>${options.name}</h3>
+                            <h4>${options.email}</h4>
                             <br />
                             <span>
                                 <i class="fa fa-2x fa-facebook"></i>
@@ -94,10 +102,10 @@ module.exports = {
                     <div class="row">
                         <section class="col-md-12 member_info">
                             <label>Title</label>
-                            <p>Some Title</p>
+                            <p>${options.title}</p>
                             <br />
                             <label>About me</label>
-                            <p>Lorem ipsum</p>
+                            <p>${options.aboutMe}</p>
                             <br />
                             <label>Hobbies</label>
                             <p>Hobbies</p>
