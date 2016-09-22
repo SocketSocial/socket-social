@@ -144,7 +144,8 @@ module.exports = class {
 
         this.api.getUsers()
             .then(users => {
-                for (let user of users) {
+                for (let i = users.length - 1; i > 0; i--) {
+                    let user = users[i];
                     let row = `
                         <tr>
                             <td>
