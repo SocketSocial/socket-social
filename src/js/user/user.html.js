@@ -83,7 +83,7 @@ module.exports = {
                         <section class="col-xs-12 col-md-4">
                             <img src="http://placehold.it/220x220" class="img-responsive center-block">
                         </section>
-                        <sectiom class="col-xs-12 col-md-8">
+                        <section class="xs-middle col-xs-12 col-md-8">
                             <h3>${options.name}</h3>
                             <h4>${options.email}</h4>
                             <br />
@@ -92,7 +92,7 @@ module.exports = {
                                 &nbsp;
                                 <i class="fa fa-2x fa-twitter"></i>
                             </span>
-                        </sectiom>
+                        </section>
                     </div>
                     <div class="row">
                         <section class="col-md-12">
