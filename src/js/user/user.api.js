@@ -34,6 +34,17 @@ module.exports = {
             });
         });
     },
+    getUser: id => {
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                type: 'GET',
+                url: `/users/${id}`,
+                dataType: 'JSON',
+                success: user => resolve(user),
+                error: err => reject(err)
+            });
+        });
+    },
     getUserInformation: (id, fields) => {
         return new Promise((resolve, reject) => {
             $.ajax({

@@ -6,8 +6,10 @@ module.exports = function (models) {
     const Event       = models.Event;
     const Participant = models.Participant;
 
+    User.hasMany(Participant, { as: 'Participants' });
     User.hasMany(Hobby, { as: 'Hobbies' });
     User.hasMany(Event, { as: 'Events' });
-    Participant.belongsTo(User);
+    Event.hasMany(Participant, { as: 'Participants' });
+
 
 };

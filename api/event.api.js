@@ -20,6 +20,7 @@ module.exports = function (app, models) {
 
         models.Event.create({ date, location, description, userId })
             .then(event => {
+
                 res.send({ 'success': true, event });
             })
             .catch(err => res.send({ err }));

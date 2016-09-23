@@ -7,7 +7,7 @@ module.exports = function (models) {
     const Event         = models.Event;
 
     User.sync()
-        .then(() => Hobby.sync()
+        .then(() => Event.sync()
             .then(() => Participant.sync()
-                .then(() => Event.sync())));
+                .then(() => Hobby.sync())));
 };

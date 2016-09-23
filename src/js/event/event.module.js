@@ -80,30 +80,42 @@ module.exports = class {
                 const description = event.description;
                 const date        = event.date;
                 const location    = event.location;
+                const userId      = event.userId;
+
+                const getUser = require('../user/user.api.js').getUser;
 
                 const $eventDetailOptions = $(' .event_detail_options ');
 
-                const eventCardHtml = `
-                    <section class="row text-center">
-                        <div class="col-md-12">
-                            <h2 class="alert alert-info">${description}</h2>
-                        </div>
-                    </section>
-                    <section class="row text-center">
-                        <div class="col-xs-12 col-md-6">
-                            <h2 class="page-header">Location</h2>
-                            <p>${location}</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <h2 class="page-header">Participants</h2>
-                            <p>(participants)</p>
-                        </div>
-                    </section>
-                `;
+                getUser(userId)
+                    .then(data => {
+                        let name = data.user.name;
+                        let date = moment(data.user.date).format('MM-DD-YYYY');
+                        let hours = moment(data.user.date).format('HH:MM A');
 
-                $detailContainer.append(eventCardHtml);
+                        const eventCardHtml = `
+                            <section class="row text-center">
+                                <div class="col-md-12">
+                                    <h2 class="alert alert-success">${description}</h2>
+                                    <h4>Created by ${name} on ${date} at ${hours}</h4>
+                                </div>
+                            </section>
+                            <section class="row text-center">
+                                <div class="col-xs-12 col-md-6">
+                                    <h2 class="page-header">Location</h2>
+                                    <p>${location}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <h2 class="page-header">Participants</h2>
+                                    <p>(participants)</p>
+                                </div>
+                            </section>
+                        `;
 
-                $eventDetailOptions.show();
+                        $detailContainer.append(eventCardHtml);
+
+                        $eventDetailOptions.show();
+                    },
+                    err => console.error(err));
             });
      }
 

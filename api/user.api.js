@@ -80,6 +80,17 @@ module.exports = function (app, models) {
             .catch(err => res.send({ err }));
     });
 
+    // Get a single user
+    app.get('/users/:id', (req, res) => {
+        const id = req.params.id;
+
+        models.User.findOne({
+            where: { id }
+        })
+            .then(user => res.send({ user }))
+            .catch(err => res.send({ err }));
+    });
+
     // Getting a user's info
     app.post('/users/:id/info', (req, res) => {
         const id     = req.params.id;
