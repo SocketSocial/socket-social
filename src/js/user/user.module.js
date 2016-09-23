@@ -230,10 +230,10 @@ module.exports = class {
      * @param {object} $memberRow - A row with data attributes.
      * @param {object} $detailContainer - A jQuery selector.
      */
-    makeMemberProfileCard($memberRow, $detailContainer) {
-        const id    = $memberRow.attr('data-id');
-        const name  = $memberRow.attr('data-name');
-        const email = $memberRow.attr('data-email');
+    makeMemberProfileCard($memberRow , $detailContainer, options) {
+        const id    = $memberRow.attr('data-id') || options.userId;
+        const name  = $memberRow.attr('data-name') || options.name;
+        const email = $memberRow.attr('data-email') || options.email;
 
         const infoToGet = ['title', 'aboutMe'];
 
@@ -247,7 +247,6 @@ module.exports = class {
                 const memberProfileCardHtml = require('./user.html').createMemberProfileCardHtml(options);
 
                 $detailContainer.html('');
-
                 $detailContainer.append(memberProfileCardHtml);
             },
             err => console.error(err));

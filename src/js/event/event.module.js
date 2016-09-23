@@ -42,9 +42,12 @@ module.exports = class {
                     calendarEvents.push(newEvent);
                 }
 
-                const calendar = $container.calendar({
-                    events_source: calendarEvents
-                });
+                try {
+                    const calendar = $container.calendar({
+                        events_source: calendarEvents
+                    });
+                } catch (e) {
+                }
 
                 const $calCell = $(' .cal-month-day ');
 

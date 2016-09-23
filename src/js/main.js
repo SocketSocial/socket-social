@@ -20,6 +20,17 @@ $(document).ready(() => {
     const $createEventPanel     = $(' #create_event_panel ');
     const $eventDetail          = $(' #event_detail ');
 
+    try {
+        const profileOptions = {
+            userId: 1,
+            name: 'Connor Bryan',
+            email: 'cbryan@dealersocket.com'
+        };
+        USER_MODULE.makeMemberProfileCard({ attr: function () { return false } }, $(' #member_profile_wrapper '), profileOptions);
+    } catch (e) {
+        console.log(e);
+    }
+
     // Admin
     try {
         USER_MODULE.makeCreateUserPanel($createUserPanel);
