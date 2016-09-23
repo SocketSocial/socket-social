@@ -29,6 +29,11 @@
   font-size: 2rem;
   border-radius: 4px;
   background-color: #005DA8 !important;
+  transition: background-color 0.67s ease-in;
+
+  &:hover {
+    background-color: #03A9F4 !important;
+  }
 }
 
 .jumbotron,
