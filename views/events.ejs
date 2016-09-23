@@ -10,10 +10,12 @@
                     <tbody id="event_list_panel"></tbody>
                 </table>
             </div>
+            <% if (isSignedIn) { %>
             <footer class="panel-footer">
                 <a href="/event/new"><button id="create_event" class="btn btn-info"><i class="fa fa-plus"></i> Create Event</button></a>
                 <button id="my_events" class="btn btn-info"><i class="fa fa-plus"></i> My Events</button>
             </footer>
+            <% } %>
         </section>
     </div>
 </section>
