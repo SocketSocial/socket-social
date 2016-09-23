@@ -19,3 +19,15 @@
     cursor: pointer;
     background-color: #CCC;
     color: #444; }
+
+.logo-tagline {
+  font-size: 2rem;
+  border-radius: 4px;
+  background-color: #005DA8 !important; }
+
+.jumbotron,
+.well:not(.main_header) {
+  border-left: 6px solid #005DA8 !important; }
+
+.main_points i {
+  color: #03A9F4; }
