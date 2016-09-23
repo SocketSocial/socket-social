@@ -31,3 +31,9 @@
 
 .main_points i {
   color: #03A9F4; }
+
+.sub_title {
+  margin-left: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #005DA8; }
