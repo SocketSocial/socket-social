@@ -262,7 +262,9 @@ module.exports = class {
         const $signinSubmit     = $(' #signin_user_submit ');
         const $signinClear      = $(' #signin_user_clear ');
 
-        $signinSubmit.on('click', () => {
+        $signinSubmit.on('click', e => {
+            e.preventDefault();
+
             const data = {
                 email: $signinEmail.val(),
                 password: $signinPassword.val()
@@ -270,10 +272,55 @@ module.exports = class {
 
             this.api.signinUser(data)
                 .then(user => {
-                    // Pass
+                    window.location.href = '/';
                 },
                 err => console.error(err));
         });
+
+        $signinClear.on('click', e => {
+            e.preventDefault();
+
+            $signinEmail.val('');
+            $signinPassword.val('');
+        });
     }
 
+    /**
+     *
+     */
+    signupUser() {
+        const $signupUserName           = $(' #signup_user_name ');
+        const $signupUserEmail          = $(' #signup_user_email ');
+        const $signupUserPassword       = $(' #signup_user_password ');
+        const $signupUserPasswordVerify = $(' #signup_user_password_verify ');
+        const $signupUserSubmit         = $(' #signup_user_submit ');
+        const $signupUserClear          = $(' #signup_user_clear ');
+
+        $signupUserSubmit.on('click', e => {
+            e.preventDefault();
+
+            if ($signupUserPassword.val() !== $signupUserPasswordVerify.val()) throw new Error('Both password must match.');
+
+            const data = {
+                name: $signupUserName.val(),
+                email: $signupUserEmail.val(),
+                password: $signupUserPassword.val()
+            };
+
+            this.api.createUser(data)
+                .then(user => {
+                    window.location.href = '/';
+                },
+                err => console.error(err));
+
+        });
+
+        $signupUserClear.on('click', e => {
+            e.preventDefault();
+
+            $signupUserEmail.val('');
+            $signupUserPassword.val('');
+            $signupUserPasswordVerify.val('');
+        });
+    }
 };

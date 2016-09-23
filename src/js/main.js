@@ -31,22 +31,31 @@ $(document).ready(() => {
     // Members
     USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
     USER_MODULE.signinUser();
+    USER_MODULE.signupUser();
 
-    // Sign in!
+    // Logo
+    const $logo = $(' .logo ');
+
+    $logo.on('click', e => {
+        e.preventDefault();
+
+        window.location.href = '/';
+    });
+
+    // Sign out
     const $signoutUser = $(' #signout_user ');
 
-    $signoutUser.on('click', () => {
+    $signoutUser.on('click', e => {
+        e.preventDefault();
+
         $.ajax({
             type: 'POST',
             url: '/signout',
-            success: () => {
+            success: user => {
                 window.location.href = '/';
             },
             error: err => console.error(err)
         })
     });
-
-
-
 
 });

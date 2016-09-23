@@ -10,6 +10,10 @@ module.exports = function (app) {
     });
 
     app.get('/signin', (req, res) => {
+        if (req.session.isSignedIn) {
+            res.redirect('/');
+        }
+        
         res.render('../views/signin', {
             isSignedIn: req.session.isSignedIn,
             email: req.session.email
