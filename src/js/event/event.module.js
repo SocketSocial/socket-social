@@ -23,7 +23,7 @@ module.exports = class {
                     let location        = event.location;
 
                     let eventHtml = `
-                        <section class="col-md-3 event_panel" data-id="${id}">
+                        <section class="col-md-3 event_panel text-center" data-id="${id}">
                             <div class="panel panel-info">
                                 <header class="panel-heading">
                                     <h3>${date}</h3>
