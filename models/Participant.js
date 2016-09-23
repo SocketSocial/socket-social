@@ -8,12 +8,7 @@ const Sequelize = require('sequelize');
 
 module.exports = function (sequelize) {
 
-    const Participant = sequelize.define('participant', {
-        name: {
-            type: Sequelize.STRING
-        }
-
-    });
+    const Participant = sequelize.define('participant');
 
     return Participant;
 };

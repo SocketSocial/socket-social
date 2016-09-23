@@ -36,7 +36,8 @@ module.exports = function (app) {
     app.get('/event-calendar', (req, res) => {
         res.render('../views/events', {
             isSignedIn: req.session.isSignedIn,
-            email: req.session.email
+            email: req.session.email,
+            userId: req.session.userId
         });
     });
 

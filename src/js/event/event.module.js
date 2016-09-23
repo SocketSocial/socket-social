@@ -66,6 +66,8 @@ module.exports = class {
      *
      */
      makeEventCard(id, $detailContainer) {
+         const eventId = id;
+
          const $eventDetailWrapper = $(' .event_detail_wrapper ');
 
          $(' body ').trigger('click');
@@ -83,7 +85,8 @@ module.exports = class {
                 const location    = event.location;
                 const userId      = event.userId;
 
-                const getUser = require('../user/user.api.js').getUser;
+                const getUser         = require('../user/user.api').getUser;
+                const getParticipants = require('../participant/participant.api').getParticipants;
 
                 const $eventDetailOptions = $(' .event_detail_options ');
 
@@ -109,7 +112,11 @@ module.exports = class {
                                 </div>
                                 <div class="col-xs-12 col-md-6">
                                     <h2 class="page-header">Participants</h2>
-                                    <p>(participants)</p>
+                                    <section class="row">
+                                        <div class="col-md-12 well" id="participant_list">
+
+                                        </div>
+                                    </section>
                                 </div>
                             </section>
                         `;
@@ -117,10 +124,76 @@ module.exports = class {
                         $detailContainer.append(eventCardHtml);
 
                         $eventDetailOptions.show();
+
+                        const $confirmJoinEvent = $(' #confirm_join_event ');
+
+                        $confirmJoinEvent.attr('data-event-id', eventId);
+
+                        $confirmJoinEvent.on('click', function () {
+                            const userId = $(this).attr('data-user-id');
+                            const eventId = $(this).attr('data-event-id');
+
+                            const data = {
+                                userId,
+                                eventId
+                            };
+
+                            const createParticipant = require('../participant/participant.api').createParticipant;
+
+                            createParticipant(data)
+                                .then(participant => {
+                                    getParticipants()
+                                        .then(results => {
+                                            if (!Array.isArray(results)) results = [results];
+
+                                            const $participantList = $(' #participant_list ');
+                                            $participantList.html('');
+
+                                            for (let result of results) {
+                                                let userId = result.userId;
+
+                                                getUser(userId)
+                                                    .then(result => {
+                                                        console.log(result);
+                                                        let name = result.user.name;
+                                                        let participantHtml = `
+                                                            <h4 class="alert alert-success">${name}</h4>
+                                                        `;
+                                                        $participantList.append(participantHtml);
+                                                    });
+                                            }
+                                        },
+                                        err => console.error(err));
+                                }, err => console.error(err));
+                        });
+
+                        getParticipants()
+                            .then(results => {
+                                if (!Array.isArray(results)) results = [results];
+
+                                const $participantList = $(' #participant_list ');
+                                $participantList.html('');
+
+                                for (let result of results) {
+                                    let userId = result.userId;
+
+                                    getUser(userId)
+                                        .then(result => {
+                                            console.log(result);
+                                            let name = result.user.name;
+                                            let participantHtml = `
+                                                <h4 class="alert alert-success">${name}</h4>
+                                            `;
+                                            $participantList.append(participantHtml);
+                                        });
+                                }
+                            },
+                            err => console.error(err));
                     },
                     err => console.error(err));
-            });
-     }
+        },
+        err => console.error(err));
+    }
 
     /**
      *
