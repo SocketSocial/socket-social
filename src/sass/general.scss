@@ -2,6 +2,10 @@ a {
   text-decoration: none !important;
 }
 
+body {
+  background-image: url('/images/gplaypattern.png');
+}
+
 .logo {
   &:hover {
     cursor: pointer;

@@ -6,3 +6,38 @@
 
 .text-center {
   text-align: center; }
+
+.event {
+  font-size: 1.5em;
+  letter-spacing: 2px; }
+
+.event-item {
+  font-size: 1.5em;
+  letter-spacing: 2px; }
+  .event-item[data-event-class="event-success"] {
+    transition: color 1.2s ease-in, background-color 0.33s ease-in;
+    padding: 2rem; }
+    .event-item[data-event-class="event-success"]:hover {
+      color: #222;
+      background-color: #CAFFCA;
+      cursor: pointer; }
+  .event-item[data-event-class="event-info"] {
+    transition: color 1.2s ease-in, background-color 0.33s ease-in;
+    padding: 2rem; }
+    .event-item[data-event-class="event-info"]:hover {
+      color: #222;
+      background-color: #D1E8FF;
+      cursor: pointer; }
+
+.list-unstyled li {
+  padding: 2rem; }
+
+#cal-event-list {
+  background-image: url("/images/clean_textile.png") !important; }
+  #cal-event-list a.event-item {
+    color: #333 !important; }
+
+#cal-slide-content {
+  background-image: url("/images/clean_textile.png") !important; }
+  #cal-slide-content a.event-item {
+    color: #333 !important; }

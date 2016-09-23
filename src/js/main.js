@@ -21,60 +21,94 @@ $(document).ready(() => {
     const $eventDetail          = $(' #event_detail ');
 
     // Admin
-    USER_MODULE.makeCreateUserPanel($createUserPanel);
-    USER_MODULE.makeUserListPanel($userListPanel);
+    try {
+        USER_MODULE.makeCreateUserPanel($createUserPanel);
+        USER_MODULE.makeUserListPanel($userListPanel);
 
-    // Events
-    EVENT_MODULE.makeCreateEventPanel($createEventPanel);
-    EVENT_MODULE.makeListEventsPanel($eventListPanel, $eventDetail);
-
-    // Members
-    USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
-    USER_MODULE.signinUser();
-    USER_MODULE.signupUser();
-
-    // Logo
-    const $logo = $(' .logo ');
-
-    $logo.on('click', e => {
-        e.preventDefault();
-
-        window.location.href = '/';
-    });
-
-    // Random member fab
-    const $randomMemberFab = $(' #random_member_fab ');
-
-    $randomMemberFab.tooltip();
-
-    if ($randomMemberFab.length > 0) {
-        toastr.options.positionClass = "toast-bottom-right";
-        toastr.info('As with most modern web sites, SocketSocial uses cookies to track session information.');
+    } catch (e) {
+        // Pass
     }
 
-    // Sign out
-    const $signoutUser = $(' #signout_user ');
+    // Events
+    try {
+        EVENT_MODULE.makeCreateEventPanel($createEventPanel);
+        EVENT_MODULE.makeListEventsPanel($eventListPanel, $eventDetail);
 
-    $signoutUser.on('click', e => {
-        e.preventDefault();
+    } catch (e) {
+        // Pass
+    }
 
-        $.ajax({
-            type: 'POST',
-            url: '/signout',
-            success: user => {
-                window.location.href = '/';
-            },
-            error: err => console.error(err)
-        })
-    });
+    try {
+        // Members
+        USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
+        USER_MODULE.signinUser();
+        USER_MODULE.signupUser();
 
-    // Tooltips
-    const $navbarLinks = $(' .navbar_link ');
+    } catch (e) {
+        // Pass
+    }
 
-    $navbarLinks.tooltip({
-        my: "left-25 bottom",
-        at: "center"
-    });
+    try {
+        // Logo
+        const $logo = $(' .logo ');
+
+        $logo.on('click', e => {
+            e.preventDefault();
+
+            window.location.href = '/';
+        });
+
+    } catch (e) {
+        // Pass
+    }
+
+    try {
+        // Random member fab
+        const $randomMemberFab = $(' #random_member_fab ');
+
+        $randomMemberFab.tooltip();
+
+        if ($randomMemberFab.length > 0) {
+            toastr.options.positionClass = "toast-bottom-right";
+            toastr.info('As with most modern web sites, SocketSocial uses cookies to track session information.');
+        }
+
+    } catch (e) {
+        // Pass
+    }
+
+    try {
+        // Sign out
+        const $signoutUser = $(' #signout_user ');
+
+        $signoutUser.on('click', e => {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/signout',
+                success: user => {
+                    window.location.href = '/';
+                },
+                error: err => console.error(err)
+            })
+        });
+
+    } catch (e) {
+        // Pass
+    }
+
+    try {
+        // Tooltips
+        const $navbarLinks = $(' .navbar_link ');
+
+        $navbarLinks.tooltip({
+            my: "left-25 bottom",
+            at: "center"
+        });
+    } catch (e) {
+        // Pass
+    }
 
 
 });

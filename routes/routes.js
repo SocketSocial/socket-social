@@ -11,7 +11,8 @@ module.exports = function (app) {
 
     app.get('/signin', (req, res) => {
         if (req.session.isSignedIn) {
-            res.redirect('/');
+            res.redirect('/event-calendar');
+            return false;
         }
 
         res.render('../views/signin', {
@@ -21,6 +22,11 @@ module.exports = function (app) {
     });
 
     app.get('/signup', (req, res) => {
+        if (req.session.isSignedIn) {
+            res.redirect('/event-calendar');
+            return false;
+        }
+
         res.render('../views/signup', {
             isSignedIn: req.session.isSignedIn,
             email: req.session.email
@@ -37,7 +43,8 @@ module.exports = function (app) {
     app.get('/event/new', (req, res) => {
         res.render('../views/new_event', {
             isSignedIn: req.session.isSignedIn,
-            email: req.session.email
+            email: req.session.email,
+            userId: req.session.userId
         });
     });
 

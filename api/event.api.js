@@ -7,6 +7,7 @@ module.exports = function (app, models) {
         const date          = req.body.date;
         const location      = req.body.location;
         const description   = req.body.description;
+        const userId        = req.session.userId;
 
         // Malformed event
         if (!date || !location || !description) {
@@ -17,7 +18,7 @@ module.exports = function (app, models) {
             return false;
         }
 
-        models.Event.create({ date, location, description })
+        models.Event.create({ date, location, description, userId })
             .then(event => {
                 res.send({ 'success': true, event });
             })

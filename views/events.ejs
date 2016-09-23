@@ -12,8 +12,7 @@
             </div>
             <% if (isSignedIn) { %>
             <footer class="panel-footer">
-                <a href="/event/new"><button id="create_event" class="btn btn-info"><i class="fa fa-plus"></i> Create Event</button></a>
-                <button id="my_events" class="btn btn-info"><i class="fa fa-plus"></i> My Events</button>
+                <a href="/event/new"><button id="create_event" class="btn btn-info btn-raised btn-block"><i class="fa fa-plus"></i> Create Event</button></a>
             </footer>
             <% } %>
         </section>
@@ -27,9 +26,11 @@
                     <!-- Populated onClick from EventModule#makeEventCard -->
                 </section>
             </div>
+            <% if (isSignedIn) { %>
             <div class="panel-footer event_detail_options">
-                <button id="join_event" class="btn btn-info"><i class="fa fa-plus"></i> Join Event</button>
+                <button id="join_event" class="btn btn-info btn-raised btn-block"><i class="fa fa-plus"></i> Join Event</button>
             </div>
+            <% } %>
         </section>
     </div>
 </section>

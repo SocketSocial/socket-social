@@ -272,7 +272,7 @@ module.exports = class {
 
             this.api.signinUser(data)
                 .then(user => {
-                    window.location.href = '/';
+                    window.location.href = '/event-calendar';
                 },
                 err => console.error(err));
         });

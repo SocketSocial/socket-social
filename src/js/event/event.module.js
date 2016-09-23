@@ -16,39 +16,49 @@ module.exports = class {
 
          this.api.getEvents()
             .then(events => {
+                const calendarEvents = [];
+
+                let eventClass = 'event-info';
+
                 for (let event of events) {
                     let id              = event.id;
-                    let description     = event.description;
+                    let title           = event.description;
                     let date            = event.date;
                     let location        = event.location;
 
-                    let eventHtml = `
-                        <section class="col-md-3 event_panel text-center" data-id="${id}">
-                            <div class="panel panel-info">
-                                <header class="panel-heading">
-                                    <h3>${date}</h3>
-                                </header>
-                                <div class="panel-body">
-                                    <p>${description}</p>
-                                </div>
-                                <footer class="panel-footer">
-                                    <p>Organized by (name)</p>
-                                </footer>
-                            </div>
-                        </section>
-                    `;
+                    let start = moment(date, 'YYYY-MM-DD').unix() * 1000;
+                    let end   = start;
 
-                    $container.append(eventHtml);
+                    eventClass === 'event-info' ? eventClass = 'event-success' : eventClass = 'event-info';
+
+                    let newEvent = {
+                        id,
+                        title,
+                        class: eventClass,
+                        start,
+                        end
+                    };
+
+                    calendarEvents.push(newEvent);
                 }
 
-                const $eventPanel = $(' .event_panel ');
-
-                $eventPanel.each(function () {
-                    $(this).on('click', () => {
-                        _this.makeEventCard($(this).attr('data-id'), $detailContainer);
-                    });
+                const calendar = $container.calendar({
+                    events_source: calendarEvents
                 });
 
+                const $calCell = $(' .cal-month-day ');
+
+                $calCell.on('click', () => {
+                    setTimeout(() => {
+                        const $event = $(' .event-item ');
+
+                        $event.on('click', function () {
+                            let id = $(this).attr('data-event-id');
+
+                            _this.makeEventCard(id, $detailContainer);
+                        });
+                    }, 500);
+                });
             });
      }
 
@@ -56,7 +66,9 @@ module.exports = class {
      *
      */
      makeEventCard(id, $detailContainer) {
-         const $eventDetailWrapper     = $(' .event_detail_wrapper ');
+         const $eventDetailWrapper = $(' .event_detail_wrapper ');
+
+         $(' body ').trigger('click');
 
          $eventDetailWrapper.show();
 
@@ -73,17 +85,18 @@ module.exports = class {
 
                 const eventCardHtml = `
                     <section class="row text-center">
-                        <div class="col-xs-12 col-md-4">
-                            <h2>Information</h2>
-                            <p>${description}</p>
-                            <p>Organized by (name)</p>
+                        <div class="col-md-12">
+                            <h2 class="alert alert-info">${description}</h2>
                         </div>
-                        <div class="col-xs-12 col-md-4">
-                            <h2>Participants</h2>
-                        </div>
-                        <div class="col-xs-12 col-md-4">
-                            <h2>Location</h2>
+                    </section>
+                    <section class="row text-center">
+                        <div class="col-xs-12 col-md-6">
+                            <h2 class="page-header">Location</h2>
                             <p>${location}</p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                            <h2 class="page-header">Participants</h2>
+                            <p>(participants)</p>
                         </div>
                     </section>
                 `;
@@ -98,6 +111,7 @@ module.exports = class {
      *
      */
     makeCreateEventPanel($container) {
+        const $createEventUserId      = $(' #create_event_user_id ');
         const $createEventDescription = $(' #create_event_description ');
         const $createEventLocation    = $(' #create_event_location ');
         const $createEventDate        = $(' #create_event_date ');
@@ -106,13 +120,14 @@ module.exports = class {
 
         $createEventSubmit.on('click', () => {
             const data = {
+                userId: $createEventUserId.val(),
                 description: $createEventDescription.val(),
                 location: $createEventLocation.val(),
                 date: $createEventDate.val()
             };
 
             this.api.createEvent(data)
-                .then(event => console.log(event));
+                .then(event => window.location.href = '/event-calendar', err => console.error(err));
         });
 
     }
