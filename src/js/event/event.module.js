@@ -171,10 +171,14 @@ module.exports = class {
                             .then(results => {
                                 if (!Array.isArray(results)) results = [results];
 
+                                const validResults = results.filter(participant => {
+                                    return participant.eventId === parseInt(eventId);
+                                });
+
                                 const $participantList = $(' #participant_list ');
                                 $participantList.html('');
 
-                                for (let result of results) {
+                                for (let result of validResults) {
                                     let userId = result.userId;
 
                                     getUser(userId)
