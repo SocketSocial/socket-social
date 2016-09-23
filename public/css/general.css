@@ -1,2 +1,5 @@
 .navbar.navbar-info {
   background-color: #000; }
+
+.panel.panel-info > .panel-heading {
+  background-color: #222; }
