@@ -42,6 +42,16 @@ $(document).ready(() => {
         window.location.href = '/';
     });
 
+    // Random member fab
+    const $randomMemberFab = $(' #random_member_fab ');
+
+    $randomMemberFab.tooltip();
+
+    if ($randomMemberFab.length > 0) {
+        toastr.options.positionClass = "toast-bottom-right";
+        toastr.info('As with most modern web sites, SocketSocial uses cookies to track session information.');
+    }
+
     // Sign out
     const $signoutUser = $(' #signout_user ');
 

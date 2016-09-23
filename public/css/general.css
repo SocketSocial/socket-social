@@ -1,3 +1,6 @@
+a {
+  text-decoration: none !important; }
+
 .logo:hover {
   cursor: pointer; }
 
@@ -28,6 +31,9 @@
   .logo-tagline:hover {
     background-color: #03A9F4 !important; }
 
+.jumbotron {
+  position: relative; }
+
 .jumbotron,
 .well:not(.main_header) {
   border-left: 6px solid #005DA8 !important; }
@@ -35,8 +41,26 @@
 .main_points i {
   color: #03A9F4; }
 
+.main_points h2 {
+  letter-spacing: 5px;
+  text-transform: uppercase; }
+
+.main_points p {
+  font-size: 1.25em;
+  letter-spacing: 2px; }
+
 .sub_title {
   margin-left: 2rem;
   text-transform: uppercase;
   letter-spacing: 5px;
   color: #005DA8; }
+
+.index-btn {
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  text-decoration: none !important; }
+
+#random_member_fab {
+  position: absolute;
+  top: 2rem;
+  right: 2rem; }
