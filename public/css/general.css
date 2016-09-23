@@ -6,3 +6,6 @@
 
 .gn-inline {
   display: inline-block !important; }
+
+.gn-rtpad {
+  padding-right: 2px; }
