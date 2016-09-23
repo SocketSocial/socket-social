@@ -21,7 +21,7 @@ $(document).ready(() => {
     const $eventDetail          = $(' #event_detail ');
 
     // Admin
-    // USER_MODULE.makeCreateUserPanel($createUserPanel);
+    USER_MODULE.makeCreateUserPanel($createUserPanel);
     USER_MODULE.makeUserListPanel($userListPanel);
 
     // Events
@@ -30,6 +30,23 @@ $(document).ready(() => {
 
     // Members
     USER_MODULE.makeMemberHobbyList($memberList, $memberDetail);
+    USER_MODULE.signinUser();
+
+    // Sign in!
+    const $signoutUser = $(' #signout_user ');
+
+    $signoutUser.on('click', () => {
+        $.ajax({
+            type: 'POST',
+            url: '/signout',
+            success: () => {
+                window.location.href = '/';
+            },
+            error: err => console.error(err)
+        })
+    });
+
+
 
 
 });

@@ -253,4 +253,27 @@ module.exports = class {
             err => console.error(err));
     }
 
+    /**
+     *
+     */
+    signinUser() {
+        const $signinEmail      = $(' #signin_user_email ')
+        const $signinPassword   = $(' #signin_user_password ');
+        const $signinSubmit     = $(' #signin_user_submit ');
+        const $signinClear      = $(' #signin_user_clear ');
+
+        $signinSubmit.on('click', () => {
+            const data = {
+                email: $signinEmail.val(),
+                password: $signinPassword.val()
+            };
+
+            this.api.signinUser(data)
+                .then(user => {
+                    // Pass
+                },
+                err => console.error(err));
+        });
+    }
+
 };

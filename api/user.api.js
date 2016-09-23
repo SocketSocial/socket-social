@@ -66,6 +66,12 @@ module.exports = function (app, models) {
             .catch(err => res.send({ err }));
     });
 
+    // Sign a user out
+    app.post('/signout', (req, res) => {
+        req.session.isSignedIn = false;
+        res.redirect('/');
+    });
+
     // Get all users
     app.get('/users', (req, res) => {
         models.User.findAll()
