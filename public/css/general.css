@@ -2,4 +2,7 @@
   background-color: #000; }
 
 .panel.panel-info > .panel-heading {
-  background-color: #222; }
+  background-color: #403d3d; }
+
+.gn-inline {
+  display: inline-block !important; }
