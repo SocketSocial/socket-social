@@ -28,7 +28,14 @@ $(document).ready(() => {
         };
         USER_MODULE.makeMemberProfileCard({ attr: function () { return false } }, $(' #member_profile_wrapper '), profileOptions);
     } catch (e) {
-        console.log(e);
+        // Pass
+    }
+
+    try {
+        const $profileId = $(' $profile_id ');
+
+    } catch (e) {
+        // Pass
     }
 
     // Admin

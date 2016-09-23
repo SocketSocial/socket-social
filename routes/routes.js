@@ -59,10 +59,21 @@ module.exports = function (app) {
     app.get('/profile', (req, res) => {
         res.render('../views/profile', {
             isSignedIn: req.session.isSignedIn,
-            email: req.session.email
+            email: req.session.email,
+            name: req.session.name,
+            userId: req.session.userId
         });
     });
 
+    app.get('/profile/:id', (req, res) => {
+        const userId = req.params.id;
+
+        res.render('../views/profile', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email,
+            userId
+        });
+    });
 
 
     // Administrative Controls

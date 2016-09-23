@@ -18,6 +18,7 @@ module.exports = function (app, models) {
                     // Valid password
                     req.session.isSignedIn = true;
                     req.session.email      = email;
+                    req.session.name       = user.dataValues.name;
                     req.session.userId     = user.dataValues.id;
 
                     res.send({ 'success': true, user });
