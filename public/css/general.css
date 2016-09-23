@@ -38,8 +38,11 @@ body {
   position: relative; }
 
 .jumbotron,
-.well:not(.main_header) {
+.well:not(.main_header):not(.map_well) {
   border-left: 6px solid #005DA8 !important; }
+
+.map_well {
+  border-bottom: 6px solid #4CAF50 !important; }
 
 .main_points i {
   color: #03A9F4; }
@@ -70,3 +73,27 @@ body {
 
 .event_detail_wrapper {
   display: none; }
+
+.index_background {
+  height: 35rem;
+  background: url(/images/index_background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.events_background {
+  height: 35rem;
+  background: url(/images/events_background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }
+
+.members_background {
+  height: 35rem;
+  background: url(/images/members_background.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; }

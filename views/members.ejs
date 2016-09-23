@@ -1,34 +1,36 @@
 <% include ./partials/top %>
-<section class="row">
-    <div class="col-md-12">
-        <section class="panel panel-info">
-            <header class="panel-heading">
-                <h2>Members with Hobbies</h2>
-            </header>
-            <div class="panel-body">
-                <table class="table">
-                    <thead>
-                        <tr class="user_list_title">
-                            <td>Name</td>
-                            <td>Email</td>
-                        </tr>
-                    </thead>
-                    <tbody id="member_list"></tbody>
-                </table>
-            </div>
-            <footer class="panel-footer">
-                <form>
-                    <fieldset class="form-group">
-                        <input id="filter_members" class="form-control" type="text" placeholder="Filter"/>
-                    </fieldset>
-                </form>
-            </footer>
-        </section>
-    </div>
-    <div class="col-md-12">
-        <section id="member_detail" class="well">
-            <!-- Populated onClick from UserModule#makeMemberProfileCard -->
-        </section>
-    </div>
-</section>
+<section class="container-fluid members_background"></section>
+<main class="container ss-content">
+    <section class="row">
+        <div class="col-md-12">
+            <section class="panel panel-info">
+                <header class="panel-heading">
+                    <h2>Members</h2>
+                </header>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr class="user_list_title">
+                                <td>Name</td>
+                                <td>Email</td>
+                            </tr>
+                        </thead>
+                        <tbody id="member_list"></tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <form>
+                        <fieldset class="form-group">
+                            <input id="filter_members" class="form-control" type="text" placeholder="Filter"/>
+                        </fieldset>
+                    </form>
+                </footer>
+            </section>
+        </div>
+        <div class="col-md-12">
+            <section id="member_detail" class="well">
+                <!-- Populated onClick from UserModule#makeMemberProfileCard -->
+            </section>
+        </div>
+    </section>
 <% include ./partials/bottom %>

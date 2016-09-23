@@ -69,6 +69,7 @@ module.exports = class {
          const $eventDetailWrapper = $(' .event_detail_wrapper ');
 
          $(' body ').trigger('click');
+         $('html, body').animate({ scrollTop: $(document).height() }, "slow");
 
          $eventDetailWrapper.show();
 
@@ -102,7 +103,9 @@ module.exports = class {
                             <section class="row text-center">
                                 <div class="col-xs-12 col-md-6">
                                     <h2 class="page-header">Location</h2>
-                                    <p>${location}</p>
+                                    <h4 class="alert alert-info">${location}</h4>
+                                    <br />
+                                    <img src="/images/maps.png" class="img-responsive center-block well map_well" />
                                 </div>
                                 <div class="col-xs-12 col-md-6">
                                     <h2 class="page-header">Participants</h2>

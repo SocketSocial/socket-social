@@ -1,33 +1,34 @@
 <% include ./partials/top %>
-<section class="row">
-    <div class="col-md-12">
-        <section class="panel panel-info">
-            <header class="panel-heading">
-                <h2>Sign in</h2>
-            </header>
-            <div class="panel-body">
-                <form>
-                    <fieldset class="form-group">
-                        <label>Email</label>
-                        <input id="signin_user_email" type="email" class="form-control" />
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label>Password</label>
-                        <input id="signin_user_password" type="password" class="form-control" />
-                    </fieldset>
-                </form>
-            </div>
-            <footer class="panel-footer">
-                <section class="row">
-                    <div class="col-xs-6 col-sm-6">
-                        <button id="signin_user_clear" class="btn btn-info btn-raised btn-block"><i class="fa fa-trash"></i> Clear</button>
-                    </div>
-                    <div class="col-xs-6 col-sm-6">
-                        <button id="signin_user_submit" class="btn btn-success btn-raised btn-block"><i class="fa fa-arrow-right"></i> Submit</button>
-                    </div>
-                </section>
-            </footer>
-        </section>
-    </div>
-</section>
+<main class="container ss-content">
+    <section class="row">
+        <div class="col-md-12">
+            <section class="panel panel-info">
+                <header class="panel-heading">
+                    <h2>Sign in</h2>
+                </header>
+                <div class="panel-body">
+                    <form>
+                        <fieldset class="form-group">
+                            <label>Email</label>
+                            <input id="signin_user_email" type="email" class="form-control" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Password</label>
+                            <input id="signin_user_password" type="password" class="form-control" />
+                        </fieldset>
+                    </form>
+                </div>
+                <footer class="panel-footer">
+                    <section class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <button id="signin_user_clear" class="btn btn-info btn-raised btn-block"><i class="fa fa-trash"></i> Clear</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            <button id="signin_user_submit" class="btn btn-success btn-raised btn-block"><i class="fa fa-arrow-right"></i> Submit</button>
+                        </div>
+                    </section>
+                </footer>
+            </section>
+        </div>
+    </section>
 <% include ./partials/bottom %>

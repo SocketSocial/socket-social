@@ -55,6 +55,15 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/profile', (req, res) => {
+        res.render('../views/profile', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
+    });
+
+
+
     // Administrative Controls
     app.get('/admin', (req, res) => {
         if (!req.session.isAdmin) {

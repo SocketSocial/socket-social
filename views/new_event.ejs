@@ -1,38 +1,39 @@
 <% include ./partials/top %>
-<section class="row">
-    <div class="col-md-12">
-        <section class="panel panel-info">
-            <header class="panel-heading">
-                <h2><i class="fa fa-beer"></i><i class="fa fa-plus"></i> Create Event</h2>
-            </header>
-            <div class="panel-body">
-                <form id="create_event_panel">
-                    <input type="hidden" id="create_event_user_id" value="<%= userId %>" />
-                    <fieldset class="form-group">
-                        <label>Description</label>
-                        <input type="text" id="create_event_description" class="form-control" />
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label>Location</label>
-                        <input type="text" id="create_event_location" class="form-control" />
-                    </fieldset>
-                    <fieldset class="form-group">
-                        <label>Date</label>
-                        <input type="date" id="create_event_date" class="form-control" />
-                    </fieldset>
-                </form>
-            </div>
-            <footer class="panel-footer">
-                <section class="row">
-                    <div class="col-xs-6 col-sm-6">
-                        <button id="create_event_clear" class="btn btn-info btn-raised btn-block"><i class="fa fa-trash"></i> Clear</button>
-                    </div>
-                    <div class="col-xs-6 col-sm-6">
-                        <button id="create_event_submit" class="btn btn-success btn-raised btn-block"><i class="fa fa-arrow-right"></i> Submit</button>
-                    </div>
-                </section>
-            </footer>
-        </section>
-    </div>
-</section>
+<main class="container ss-content">
+    <section class="row">
+        <div class="col-md-12">
+            <section class="panel panel-info">
+                <header class="panel-heading">
+                    <h2><i class="fa fa-beer"></i><i class="fa fa-plus"></i> Create Event</h2>
+                </header>
+                <div class="panel-body">
+                    <form id="create_event_panel">
+                        <input type="hidden" id="create_event_user_id" value="<%= userId %>" />
+                        <fieldset class="form-group">
+                            <label>Description</label>
+                            <input type="text" id="create_event_description" class="form-control" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Location</label>
+                            <input type="text" id="create_event_location" class="form-control" />
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Date</label>
+                            <input type="date" id="create_event_date" class="form-control" />
+                        </fieldset>
+                    </form>
+                </div>
+                <footer class="panel-footer">
+                    <section class="row">
+                        <div class="col-xs-6 col-sm-6">
+                            <button id="create_event_clear" class="btn btn-info btn-raised btn-block"><i class="fa fa-trash"></i> Clear</button>
+                        </div>
+                        <div class="col-xs-6 col-sm-6">
+                            <button id="create_event_submit" class="btn btn-success btn-raised btn-block"><i class="fa fa-arrow-right"></i> Submit</button>
+                        </div>
+                    </section>
+                </footer>
+            </section>
+        </div>
+    </section>
 <% include ./partials/bottom %>
