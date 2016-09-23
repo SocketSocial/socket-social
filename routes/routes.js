@@ -3,7 +3,7 @@
 module.exports = function (app) {
 
     app.get('/', (req, res) => {
-        res.render('../views/events', {
+        res.render('../views/index', {
             isSignedIn: req.session.isSignedIn,
             email: req.session.email
         });
@@ -13,7 +13,7 @@ module.exports = function (app) {
         if (req.session.isSignedIn) {
             res.redirect('/');
         }
-        
+
         res.render('../views/signin', {
             isSignedIn: req.session.isSignedIn,
             email: req.session.email
@@ -27,8 +27,11 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/events', (req, res) => {
-        res.redirect('/');
+    app.get('/event-calendar', (req, res) => {
+        res.render('../views/events', {
+            isSignedIn: req.session.isSignedIn,
+            email: req.session.email
+        });
     });
 
     app.get('/event/new', (req, res) => {
