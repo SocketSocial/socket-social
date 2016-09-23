@@ -56,6 +56,10 @@ module.exports = class {
      *
      */
      makeEventCard(id, $detailContainer) {
+         const $eventDetailWrapper     = $(' .event_detail_wrapper ');
+
+         $eventDetailWrapper.show();
+
          $detailContainer.html('');
 
          this.api.getEvent(id)

@@ -64,3 +64,6 @@ a {
   position: absolute;
   top: 2rem;
   right: 2rem; }
+
+.event_detail_wrapper {
+  display: none; }
