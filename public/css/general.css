@@ -13,5 +13,9 @@
 .gn-rtpad {
   padding-right: 2px; }
 
-.spacer {
-  height: 4rem; }
+.navbar_link {
+  transition: background-color 0.33s ease-in, color 0.25s ease-in; }
+  .navbar_link:hover {
+    cursor: pointer;
+    background-color: #CCC;
+    color: #444; }

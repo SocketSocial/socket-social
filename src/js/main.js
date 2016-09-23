@@ -58,4 +58,12 @@ $(document).ready(() => {
         })
     });
 
+    // Tooltips
+    const $navbarLinks = $(' .navbar_link ');
+
+    $navbarLinks.tooltip({
+        my: "left-25 bottom",
+        at: "center"
+    });
+
 });

@@ -6,12 +6,21 @@
 .navbar.navbar-info {
   background-color:#000;
 }
-.panel.panel-info>.panel-heading {
+.panel.panel-info > .panel-heading {
   background-color:#403d3d;
 }
-.gn-inline{
+.gn-inline {
   display: inline-block !important;
 }
-.gn-rtpad{
+.gn-rtpad {
   padding-right: 2px;
+}
+.navbar_link {
+  transition: background-color 0.33s ease-in, color 0.25s ease-in;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #CCC;
+    color: #444;
+  }
 }
