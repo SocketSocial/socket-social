@@ -78,10 +78,10 @@ module.exports = function (app) {
 
     // Administrative Controls
     app.get('/admin', (req, res) => {
-        if (!req.session.isAdmin) {
-            res.redirect('/');
-            return false;
-        }
+        // if (!req.session.isAdmin) {
+        //     res.redirect('/');
+        //     return false;
+        // }
 
         // if (!token || !authToken(token)) {
         //     res.render('../views/partials/auth_error')
