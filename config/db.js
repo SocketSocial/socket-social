@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const mysql     = require('mysql2');
 
-const sequelize = new Sequelize('socketsocial', 'root', 'hack2016!', {
-  host: '104.236.222.93',
+const sequelize = new Sequelize('<redacted>', '<redacted>', '<redacted>', {
+  host: '<redacted>',
   dialect: 'mysql',
   pool: {
     max: 5,
